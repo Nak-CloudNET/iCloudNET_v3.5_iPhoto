@@ -4400,7 +4400,7 @@ class Sales extends MY_Controller
 
 			$invoice_view = $this->Settings->invoice_view;
 			if($invoice_view == 0){
-                redirect("sales/print_st_invoice/" . $s->row()->id);
+                redirect("sales/print_iphoto_invoice/" . $s->row()->id);
 			}
 			else if($invoice_view == 1){
 				redirect("sales/invoice/".$s->row()->id);

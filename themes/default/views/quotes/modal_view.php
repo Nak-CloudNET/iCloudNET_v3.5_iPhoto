@@ -314,13 +314,13 @@
                                 <span class="hidden-sm hidden-xs"><?= lang('Print_Quote') ?></span>
                             </a>
                         </div> -->
-                        <div class="btn-group">
+                     <!--    <div class="btn-group">
                             <a href="<?= site_url('Quotes/invoice_standard/' . $inv->id) ?>" target="_blank"
                                class="tip btn btn-primary" title="<?= lang('print_quote') ?>">
                                 <i class="fa fa-heart"></i>
                                 <span class="hidden-sm hidden-xs"><?= lang('Print_Quote') ?></span>
                             </a>
-                        </div>
+                        </div> -->
                         <div class="btn-group">
                             <a href="<?= site_url('Quotes/invoice_iphoto/' . $inv->id) ?>" target="_blank"
                                class="tip btn btn-primary" title="<?= lang('print_quote') ?>">

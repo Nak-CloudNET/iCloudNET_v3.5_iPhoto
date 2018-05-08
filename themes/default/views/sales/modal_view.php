@@ -437,12 +437,12 @@
                             </a>
                         </div>
 						-->
-                            <div class="btn-group">
+                     <!--    <div class="btn-group">
                             <a href="<?= site_url('sales/print_st_invoice/' . $inv->id) ?>" target="_blank" class="tip btn btn-primary" title="<?= lang('st_invoice') ?>">
                                 <i class="fa fa-print"></i>
                                 <span class="hidden-sm hidden-xs"><?= lang('st_invoice') ?></span>
                             </a>
-                        </div>
+                        </div> -->
 						<div class="btn-group">
                             <a href="<?= site_url('sales/print_iphoto_invoice/' . $inv->id) ?>" target="_blank" class="tip btn btn-primary" title="<?= lang('st_invoice') ?>">
                                 <i class="fa fa-print"></i>
