@@ -4529,7 +4529,7 @@ class Reports extends MY_Controller
         $user = $this->site->getUser();
         if(!$this->Owner && !$this->Admin) {
             if($user->biller_id){
-                $this->data['billers'] = $this->site->getCompanyByArray(json_decode($this->session->userdata('biller_id')));
+                $this->data['billers'] = $this->site->getBillerByID(json_decode($user->biller_id));
             }else{
                 $this->data['billers'] = $this->site->getAllCompanies('biller');
             }
@@ -4566,7 +4566,7 @@ class Reports extends MY_Controller
         $user = $this->site->getUser();
         if(!$this->Owner && !$this->Admin) {
             if($user->biller_id){
-                $this->data['billers'] = $this->site->getCompanyByArray(json_decode($this->session->userdata('biller_id')));
+                $this->data['billers'] = $this->site->getBillerByID(json_decode($user->biller_id));
             }else{
                 $this->data['billers'] = $this->site->getAllCompanies('biller');
             }
