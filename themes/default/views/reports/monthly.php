@@ -32,7 +32,7 @@
 </script>
 <div class="box">
     <div class="box-header">
-        <h2 class="blue"><i class="fa-fw fa fa-calendar"></i><?= lang('monthly_sales'); ?><?php if($biller_id){ ?>
+        <h2 class="blue"><i class="fa-fw fa fa-calendar"></i><?= lang('monthly_sales'); ?><?php if(is_numeric($biller_id)){ ?>
                 <tr>
                     <th colspan="8" style="text-align: left;"> >>
                         <?php
@@ -47,7 +47,7 @@
                         ?>
                     </th>
                 </tr>
-            <?php }else{echo ">>All Project";} ?></h2>
+            <?php }else{$this->session->set_userdata('biller_id',"");echo ">>All Project";} ?></h2>
         <div class="box-icon">
             <ul class="btn-tasks">
                 <li class="dropdown"><a href="#" class="toggle_up tip" title="<?= lang('hide_form') ?>"><i

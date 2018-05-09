@@ -1033,7 +1033,19 @@ ORDER BY
     }
     public function getDailySalesByBiller($year, $month,$biller)
     {
-        $biller=$biller?' AND erp_sales.biller_id='.$biller:'';
+        $biller=json_decode($biller);
+        if(is_array($biller)){
+            $b="";
+            foreach ($biller as $key ) {
+                $b.=$key.",";
+
+            }
+            $b=rtrim($b,",");
+            //$biller='';
+        }else{
+            $b=$biller;
+        }
+        $biller=$biller?' AND erp_sales.biller_id IN ('.$b.')':'';
         $myQuery = "SELECT DATE_FORMAT( erp_sales.date,  '%e' ) AS date, 
 		SUM( COALESCE( erp_sales.product_tax, 0 ) ) AS tax1, 
 		SUM( COALESCE( erp_sales.order_tax, 0 ) ) AS tax2, 
@@ -1077,6 +1089,19 @@ ORDER BY
     }
     public function getMonthlySalesByBiller($year,$biller)
     {
+        $biller=json_decode($biller);
+        if(is_array($biller)){
+            $b="";
+            foreach ($biller as $key ) {
+                $b.=$key.",";
+
+            }
+            $b=rtrim($b,",");
+            //$biller='';
+        }else{
+            $b=$biller;
+        }
+        $biller=$biller?' AND erp_sales.biller_id IN ('.$b.')':'';
         $myQuery = "SELECT DATE_FORMAT( erp_sales.date,  '%c' ) AS date,
 		SUM( COALESCE( erp_sales.product_tax, 0 ) ) AS tax1, 
 		SUM( COALESCE( erp_sales.order_tax, 0 ) ) AS tax2, 
@@ -1085,7 +1110,7 @@ ORDER BY
 		SUM( COALESCE( erp_sales.order_discount, 0 ) ) AS order_discount, 
 		SUM( COALESCE( erp_sales.shipping, 0 ) ) AS shipping,SUM(COALESCE(erp_return_sales.grand_total,0)) as t_return 
 			FROM " . $this->db->dbprefix('sales') . " LEFT JOIN erp_return_sales ON erp_return_sales.sale_id = erp_sales.id
-			WHERE DATE_FORMAT( erp_sales.date,  '%Y' ) =  '{$year}' AND erp_sales.biller_id='{$biller}'
+			WHERE DATE_FORMAT( erp_sales.date,  '%Y' ) =  '{$year}'".$biller."
 			GROUP BY date_format( erp_sales.date, '%c' ) ORDER BY date_format( erp_sales.date, '%c' ) ASC";
         $q = $this->db->query($myQuery, false);
         if ($q->num_rows() > 0) {
@@ -1183,7 +1208,19 @@ ORDER BY
     }
     public function getStaffDailySalesByBiller($user_id, $year, $month,$biller)
     {
-        $biller=$biller?' AND erp_sales.biller_id='.$biller:'';
+        $biller=json_decode($biller);
+        if(is_array($biller)){
+            $b="";
+            foreach ($biller as $key ) {
+                $b.=$key.",";
+
+            }
+            $b=rtrim($b,",");
+            //$biller='';
+        }else{
+            $b=$biller;
+        }
+        $biller=$biller?' AND erp_sales.biller_id IN ('.$b.')':'';
         $myQuery = "SELECT DATE_FORMAT( date,  '%e' ) AS date, SUM( COALESCE( product_tax, 0 ) ) AS tax1, 
 			SUM( COALESCE( order_tax, 0 ) ) AS tax2, 
 			SUM( COALESCE( total, 0 ) ) AS total,
