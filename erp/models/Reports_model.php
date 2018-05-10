@@ -1089,6 +1089,17 @@ ORDER BY
     }
     public function getMonthlySalesByBiller($year,$biller)
     {
+       $user = $this->site->getUser();
+	    if(empty($biller))
+	    {
+	        if(!$this->Owner && !$this->Admin) 
+	        {
+	          $biller=$user->biller_id;
+	        }else
+	        {
+	          $biller="";
+	        }
+	    }
         $biller=json_decode($biller);
         if(is_array($biller)){
             $b="";
