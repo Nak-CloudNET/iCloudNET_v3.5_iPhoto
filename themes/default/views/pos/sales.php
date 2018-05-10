@@ -113,7 +113,7 @@
             {column_number: 13, filter_default_label: "[<?=lang('payment_status');?>]", filter_type: "text", data: []},
         ], "footer");
 
-        $(document).on('click', '.email_receipt', function () {
+       $(document).on('click', '.email_receipt', function () {
             var sid = $(this).attr('data-id');
             var ea = $(this).attr('data-email-address');
             var email = prompt("<?= lang("email_address"); ?>", ea);
@@ -121,25 +121,16 @@
                 $.ajax({
                     type: "post",
                     url: "<?= site_url('pos/email_receipt') ?>/" + sid,
-                    data: {; <?= $this->security->get_csrf_token_name(); ?>:
-                "<?= $this->security->get_csrf_hash(); ?>", email;
-            :
-                email, id;
-            :
-                sid
-            },
-                "json",
-                    success;
-            :
-
-                function (data) {
+                    data: { <?= $this->security->get_csrf_token_name(); ?>: "<?= $this->security->get_csrf_hash(); ?>", email: email, id: sid },
+                    dataType: "json",
+                        success: function (data) {
                         bootbox.alert(data.msg);
                     },
                     error: function () {
                         bootbox.alert('<?= lang('ajax_request_failed'); ?>');
                         return false;
                     }
-            })
+                });
             }
         });
     });
