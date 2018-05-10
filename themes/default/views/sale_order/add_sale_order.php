@@ -1070,7 +1070,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <?= lang("sale_note", "slnote"); ?>
-                                        <?php echo form_textarea('note', (isset($_POST['note']) ? $_POST['note'] : ""), 'class="form-control" id="slnote" style="margin-top: 10px; height: 100px;"'); ?>
+                                        <?php echo form_textarea('note', (isset($_POST['note']) ? $_POST['note'] : $this->erp->decode_html($quotes->note)), 'class="form-control" id="slnote" style="margin-top: 10px; height: 100px;"'); ?>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

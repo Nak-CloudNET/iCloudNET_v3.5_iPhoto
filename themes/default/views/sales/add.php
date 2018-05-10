@@ -1066,9 +1066,9 @@
                                         <?= lang("sale_note", "slnote"); ?><span id="slnote_span"></span>
                                         <div id="note">
                                         <?php if ($this->session->userdata('group_id') == 11) { ?>
-                                        	<?php echo form_textarea('note', (isset($_POST['note']) ? $_POST['note'] : ""), 'class="form-control" id="slnote" style="margin-top: 10px; height: 100px;" required="required"'); ?>
+                                            <?php echo form_textarea('note', (isset($_POST['note']) ? $_POST['note'] : $this->erp->decode_html($quotes->note)), 'class="form-control" id="slnote" style="margin-top: 10px; height: 100px;" required="required"'); ?>
                                         <?php } else { ?>
-											<?php echo form_textarea('note', (isset($_POST['note']) ? $_POST['note'] : ""), 'class="form-control" id="slnote" style="margin-top: 10px; height: 100px;"'); ?>
+                                            <?php echo form_textarea('note', (isset($_POST['note']) ? $_POST['note'] : $this->erp->decode_html($quotes->note)), 'class="form-control" id="slnote" style="margin-top: 10px; height: 100px;"'); ?>
                                         <?php } ?>
                                         </div>
                                     </div>

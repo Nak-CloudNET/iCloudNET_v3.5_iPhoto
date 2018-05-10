@@ -183,17 +183,16 @@
                                 <div class="col-sm-7 col-xs-7">
                                     <table >
                                         <?php
-
                                         if(!empty($customer->company)) { ?>
                                             <tr>
-                                                <td style="width: 40%;">ក្រុមហ៊ុន​​​​​​ / Company</td>
+                                                <td style="width: 40%;">អតិថិជន / Customer</td>
                                                 <td style="width: 5%;">:</td>
                                                 <td style="width: 30%;"><?= $customer->company ?></td>
                                             </tr>
                                         <?php } ?>
                                         <?php if(!empty($customer->name_kh || $customer->name)) { ?>
                                             <tr>
-                                                <td>អតិថិជន / Customer </td>
+                                                <td>អ្នកទំនាក់ទំនង / Att. To</td>
                                                 <td>:</td>
                                                 <?php if(($customer->name_kh)) { ?>
                                                     <td><?= $customer->name_kh ?></td>
