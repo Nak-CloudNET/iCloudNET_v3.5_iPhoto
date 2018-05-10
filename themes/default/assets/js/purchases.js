@@ -1096,7 +1096,7 @@ function loadItems() {
 			    serial_no 		= item.row.serial;
 
 			//var qty_received 	= (item.row.received > 0) ? item.row.received : item.row.qty;
-            var qty_received 	= item.row.received;
+            var qty_received 	= item.row.received?item.row.received:0;
             var item_supplier_part_no = item.row.supplier_part_no ? item.row.supplier_part_no : '';
             var supplier 		= __getItem('posupplier'), belong = false;
             var type 			= item.row.type;
