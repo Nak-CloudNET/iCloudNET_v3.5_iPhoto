@@ -8,10 +8,10 @@
     //var audio_success = new Audio('<?= $assets ?>sounds/sound2.mp3');
     //var audio_error = new Audio('<?= $assets ?>sounds/sound3.mp3');
     $(document).ready(function () {
-	
         <?php if ($inv) { ?>
         __setItem('sldate', '<?= $this->erp->hrld($inv->date) ?>');
         __setItem('sldelidate', '<?= $this->erp->hrsd($inv->delivery_date) ?>');
+        __setItem('sldweddate', '<?= $this->erp->hrsd($inv->wedding_date) ?>');
         __setItem('slcustomer', '<?= $inv->customer_id ?>');
         __setItem('slbiller', '<?= $inv->biller_id ?>');
         __setItem('slref', '<?= $inv->reference_no ?>');        
@@ -65,6 +65,11 @@
 
         if (delivery_date = __getItem('sldelidate')) {
             $('#delivery_date').val(delivery_date);
+            
+        }
+
+        if (wedding_date = __getItem('sldweddate')) {
+            $('#wedding_date').val(wedding_date);
             
         }
 
@@ -318,8 +323,14 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <?= lang("delivery_date", "delivery_date"); ?>
+                                            <?= lang("pre_wedding", "pre_wedding"); ?>
                                             <?php echo form_input('delivery_date', (isset($_POST['delivery_date']) ? $_POST['delivery_date'] : $inv->delivery_date), 'class="form-control input-tip date" id="delivery_date"'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <?= lang("wedding_date", "wedding_date"); ?>
+                                            <?php echo form_input('wedding_date', (isset($_POST['wedding_date']) ? $_POST['wedding_date'] : $inv->wedding_date), 'class="form-control input-tip date" id="wedding_date"'); ?>
                                         </div>
                                     </div>
                                     

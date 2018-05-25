@@ -570,8 +570,14 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <?= lang("delivery_date", "delivery_date"); ?>
+                                            <?= lang("pre_wedding", "pre_wedding"); ?>
                                             <?php echo form_input('delivery_date',(isset($_POST['delivery_date']) ? $_POST['delivery_date'] : ""), 'class="form-control input-tip date" id="delivery_date"'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <?= lang("wedding_date", "wedding_date"); ?>
+                                            <?php echo form_input('wedding_date',(isset($_POST['wedding_date']) ? $_POST['wedding_date'] : ""), 'class="form-control input-tip date" id="wedding_date"'); ?>
                                         </div>
                                     </div>
 

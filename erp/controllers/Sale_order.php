@@ -141,6 +141,7 @@ class Sale_order extends MY_Controller
             }
             
             $delivery_date = $this->erp->fld($this->input->post('delivery_date'));
+            $wedding_date = $this->erp->fld($this->input->post('wedding_date'));
             $warehouse_id = $this->input->post('warehouse');
             $customer_id = $this->input->post('customer');
 			$amout_paid = $this->input->post('amount-paid');
@@ -417,6 +418,7 @@ class Sale_order extends MY_Controller
 			$data = array(
                 'date' => $date,
                 'delivery_date' => $delivery_date,
+                'wedding_date' => $wedding_date,
 				'quote_id' => $quote_ID,
                 'reference_no' => $reference,
                 'customer_id' => $customer_id,
@@ -2210,6 +2212,7 @@ class Sale_order extends MY_Controller
             $tax_rate = "tax_rate";
             $reference = $this->input->post('reference_no');
             $delivery_date = $this->erp->fld($this->input->post('delivery_date'));
+            $wedding_date = $this->erp->fld($this->input->post('wedding_date'));
             $warehouse_id = $this->input->post('warehouse');
             $customer_id = $this->input->post('customer');
 			$group_area = $this->input->post('area');
@@ -2403,6 +2406,7 @@ class Sale_order extends MY_Controller
             $data = array(
                 'date' => $date,
                 'delivery_date' => $delivery_date,
+                'wedding_date' => $wedding_date,
                 'reference_no' => $reference,
                 'customer_id' => $customer_id,
                 'customer' => $customer,

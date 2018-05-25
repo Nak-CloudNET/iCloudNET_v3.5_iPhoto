@@ -1,3 +1,4 @@
+
 <script src="<?= $assets ?>js/jquery.validate.min.js"></script>
 <style>
 	.form-group .select2-container {
@@ -146,6 +147,8 @@
 		__setItem('sale_order_ref', '<?= $sale_order->reference_no ?>');
 		__setItem('grand_total', '<?= $sale_order->grand_total ?>');
 		__setItem('saleman', '<?= $sale_order->saleman_by ?>');
+        __setItem('delivery_date', '<?= $this->erp->hrsd($sale_order->delivery_date) ?>');
+        __setItem('wedding_date', '<?= $this->erp->hrsd($sale_order->wedding_date) ?>');
 
 
 		<?php if(isset($sale_order_id)) { ?>
@@ -274,6 +277,12 @@
         }
 		if (quote_reference_no = __getItem('quote_order_ref')) {
             $('#quref').val(quote_reference_no);
+        }
+        if (delivery_date = __getItem('delivery_date')) {
+            $('#delivery_date').val(delivery_date);
+        }
+         if (wedding_date = __getItem('wedding_date')) {
+            $('#wedding_date').val(wedding_date);
         }
         $(document).on('change', '#slbiller', function (e) {
             __setItem('slbiller', $(this).val());
@@ -536,6 +545,19 @@
                                     echo get_dropdown_project('biller', 'slbiller', $default_biller[0]);
                                 }
                                 ?>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <?= lang("pre_wedding", "pre_wedding"); ?>
+                                <?php echo form_input('delivery_date',($sale_order->delivery_date), 'class="form-control input-tip date" id="delivery_date" readonly'); ?>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <?= lang("wedding_date", "wedding_date"); ?>
+                                <?php echo form_input('wedding_date',(isset($_POST['wedding_date']) ? $_POST['wedding_date'] : ""), 'class="form-control input-tip date" id="wedding_date" readonly'); ?>
                             </div>
                         </div>
 
