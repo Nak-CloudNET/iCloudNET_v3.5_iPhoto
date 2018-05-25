@@ -77,3 +77,5 @@ $lang['gps_coordinate']						= "GPS coordinate";
 $lang['facebook']							= "Facebook Account";
 $lang['line_telegram']						= "Line/Telegram";
 $lang['more_attachment']					= "Add More Attachment";
+$lang['groom_name']							= "Groom Name";
+$lang['bride_name']							= "Bride Name";

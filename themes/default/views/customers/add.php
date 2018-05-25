@@ -78,8 +78,12 @@
                         <?php echo form_input('name', '', 'class="form-control tip" id="name" data-bv-notempty="true"'); ?>
                     </div>
 					<div class="form-group person">
-                        <?= lang("name_kh", "name_kh"); ?>
-                        <?php echo form_input('name_kh', '', 'class="form-control tip" id="name_kh"'); ?>
+                        <?= lang("groom_name", "groom_name"); ?>
+                        <?php echo form_input('groom_name', '', 'class="form-control tip" id="groom_name"'); ?>
+                    </div>
+                    <div class="form-group person">
+                        <?= lang("bride_name", "bride_name"); ?>
+                        <?php echo form_input('bride_name', '', 'class="form-control tip" id="bride_name"'); ?>
                     </div>
                     <div class="form-group">
                         <?= lang("vat_no", "vat_no"); ?>

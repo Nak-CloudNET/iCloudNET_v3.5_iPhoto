@@ -64,9 +64,13 @@
                         <?php echo form_input('name', $customer->name, 'class="form-control tip" id="name" required="required"'); ?>
                     </div>
 					<div class="form-group person">
-                        <?= lang("name_kh", "name_kh"); ?>
-                        <?php echo form_input('name_kh', $customer->name_kh, 'class="form-control tip" id="name_kh"'); ?>
-                    </div>					
+                        <?= lang("groom_name", "groom_name"); ?>
+                        <?php echo form_input('groom_name', $customer->name_kh, 'class="form-control tip" id="groom_name"'); ?>
+                    </div>		
+                    <div class="form-group person">
+                        <?= lang("bride_name", "bride_name"); ?>
+                        <?php echo form_input('bride_name', $customer->bride_name, 'class="form-control tip" id="bride_name"'); ?>
+                    </div>		
                     <div class="form-group">
                         <?= lang("vat_no", "vat_no"); ?>
                         <?php echo form_input('vat_no', $customer->vat_no, 'class="form-control" id="vat_no"'); ?>

@@ -1305,6 +1305,7 @@ class Pos extends MY_Controller
 			$this->data['user_layout'] 		= $this->pos_model->getPosLayout($this->session->userdata('user_id'));
 			$this->data['bankAccounts'] 	=  $this->site->getAllBankAccounts();
 			$this->data['userBankAccounts'] =  $this->site->getAllBankAccountsByUserID();
+			//$this->erp->print_arrays($this->data);
             $this->load->view($this->theme . 'pos/add', $this->data);
         }
     }
