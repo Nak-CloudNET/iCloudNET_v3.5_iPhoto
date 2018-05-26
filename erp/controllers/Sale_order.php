@@ -128,7 +128,7 @@ class Sale_order extends MY_Controller
         if ($this->form_validation->run() == true)
         {
             $quantity = "quantity";
-            $product = "product";
+            $product   = "product";
             $unit_cost = "unit_cost";
             $tax_rate = "tax_rate";
 			$biller_id = $this->input->post('biller');
@@ -184,6 +184,7 @@ class Sale_order extends MY_Controller
 				$item_peice     = $_POST['piece'][$r];
 				$item_wpeice	= $_POST['wpiece'][$r];
 				$product_note = $_POST['product_note'][$r];
+                $location = $_POST['location'][$r];
                 $item_option = isset($_POST['product_option'][$r]) && $_POST['product_option'][$r] != 'false' ? $_POST['product_option'][$r] : null;
                 $real_unit_price = $this->erp->formatDecimal($_POST['real_unit_price'][$r]);
                 $unit_price = $this->erp->formatDecimal($_POST['unit_price'][$r]);
@@ -257,31 +258,32 @@ class Sale_order extends MY_Controller
                     $subtotal = (($item_net_price * $item_quantity) + $item_tax * $item_quantity);
 					
                     $products[] = array(
-                        'product_id' => $item_id,
-                        'digital_id' => $digital_id,
-                        'product_code' => $item_code,
-                        'product_name' => $item_name,
-                        'product_type' => $item_type,
-                        'option_id' => $item_option,
+                        'product_id'    => $item_id,
+                        'digital_id'    => $digital_id,
+                        'product_code'  => $item_code,
+                        'product_name'  => $item_name,
+                        'product_type'  => $item_type,
+                        'option_id'     => $item_option,
                         'net_unit_price' => $item_net_price,
-                        'unit_price' => $unit_price,
-                        'quantity' => $item_quantity,
-                        'warehouse_id' => $warehouse_id,
-                        'item_tax' => $pr_item_tax,
-                        'tax_rate_id' => $pr_tax,
-						'piece'	=> $item_peice,
-						'wpiece' => $item_wpeice,
+                        'unit_price'    => $unit_price,
+                        'quantity'      => $item_quantity,
+                        'warehouse_id'  => $warehouse_id,
+                        'item_tax'      => $pr_item_tax,
+                        'tax_rate_id'   => $pr_tax,
+						'piece'	        => $item_peice,
+						'wpiece'        => $item_wpeice,
 						'group_price_id'=>$group_price_id,
-                        'tax' => $tax,
+                        'tax'           => $tax,
 						'product_noted' => $product_note,
-                        'discount' => $item_discount,
+                        'location'      => $location,
+                        'discount'      => $item_discount,
                         'item_discount' => $pr_item_discount * $item_quantity,
-                        'subtotal' => $subtotal,
+                        'subtotal'      => $subtotal,
                         'real_unit_price' => $real_unit_price,
-                        'price_id' => $item_price_id
+                        'price_id'      => $item_price_id
                     );
-					
                     $total += $subtotal;
+
 					
 					
                 }

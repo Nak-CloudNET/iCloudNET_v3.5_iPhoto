@@ -1,4 +1,4 @@
-<?php //$this->erp->print_arrays($sale_order_items); ?>
+<?php //$this->erp->print_arrays('hi'.$sale_order_items); ?>
 <script type="text/javascript">
     var count = 1, an = 1, product_variant = 0, DT = <?= $Settings->default_tax_rate ?>,
         product_tax = 0, invoice_tax = 0, total_discount = 0, total = 0, allow_discount = <?= ($Owner || $Admin || $this->session->userdata('allow_discount')) ? 1 : 0; ?>,
@@ -193,7 +193,6 @@
 			__setItem('sloitems', JSON.stringify(<?= $sale_order_items; ?>));
 
         <?php } ?>
-		
         <?php if($this->input->get('customer')) { ?>
         if (!__getItem('sloitems')) {
             __setItem('slcustomer', <?=$this->input->get('customer');?>);
@@ -1236,6 +1235,14 @@
                         <div class="col-sm-8">
                            <!-- <input type="text" class="form-control kb-pad" id="pnote">-->
                             <textarea id="pnote"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="location" class="col-sm-4 control-label"><?= lang('location') ?></label>
+
+                        <div class="col-sm-8">
+                           <!-- <input type="text" class="form-control kb-pad" id="pnote">-->
+                            <textarea id="location"></textarea>
                         </div>
                     </div>
                     <table class="table table-bordered table-striped">

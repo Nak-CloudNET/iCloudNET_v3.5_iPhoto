@@ -796,6 +796,14 @@
                             <textarea id="pnote"></textarea>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="location" class="col-sm-4 control-label"><?= lang('location') ?></label>
+
+                        <div class="col-sm-8">
+                            <!--<input type="text" class="form-control kb-pad" id="pnote">-->
+                            <textarea id="location"></textarea>
+                        </div>
+                    </div>
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th style="width:25%;"><?= lang('net_unit_price'); ?></th>
