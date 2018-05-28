@@ -54,6 +54,7 @@ class Sale_order_model extends CI_Model
 						'serial_no' => $product['serial_no'],
 						'real_unit_price' => $product['real_unit_price'],
 						'product_noted' => $product['product_noted'],
+						'location' => $product['location'],
 						'expiry' => $product['expiry'],
 						'expiry_id' => $product['expiry_id'],
 						'digital_id' => $product['digital_id'],

@@ -2254,9 +2254,9 @@ class Sale_order extends MY_Controller
 				$item_peice     = $_POST['piece'][$r];
 				$item_wpeice	= $_POST['wpiece'][$r];
                 $product_note = $_POST['product_note'][$r];
+                $location = $_POST['location'][$r];
 				$group_price_id = $_POST['group_price_id'][$r];
                 $item_option = isset($_POST['product_option'][$r]) && $_POST['product_option'][$r] != 'false' ? $_POST['product_option'][$r] : NULL;
-                
                 $real_unit_price = $this->erp->formatDecimal($_POST['real_unit_price'][$r]);
                 $unit_price = $this->erp->formatDecimal($_POST['unit_price'][$r]);
 				$net_price = $this->erp->formatDecimal($_POST['net_price'][$r]);
@@ -2352,6 +2352,7 @@ class Sale_order extends MY_Controller
                         'real_unit_price' => $real_unit_price,
                         'price_id' => $item_price_id,
                         'product_noted' => $product_note,
+                        'location'=>$location
                     );
                     $total += $subtotal;
 					$ord_qty += $item_quantity;
@@ -2505,7 +2506,6 @@ class Sale_order extends MY_Controller
             $this->data['error'] = (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
 			$inv = $this->sale_order_model->getSaleOrder($id);
             $inv_items = $this->sale_order_model->getSaleOrderItems($id);
-
             $this->data['inv'] = $inv;
 			$this->data['quote'] = $this->quotes_model->getQuoteByID($inv->quote_id);
 			$customer = $this->site->getCompanyByID($inv->customer_id);
@@ -2563,6 +2563,7 @@ class Sale_order extends MY_Controller
                 $row->option = $item->option_id;
 				$row->unit = $row->unit;
 				$row->note = $item->product_noted;
+                $row->location=$item->location;
 				$options = $this->sales_model->getProductOptions($row->id, $item->warehouse_id);
 				$test = $this->sales_model->getWP2($row->id, $item->warehouse_id);
 				$row->quantity = $test->quantity;
