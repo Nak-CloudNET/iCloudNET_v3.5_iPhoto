@@ -3952,6 +3952,7 @@ class Sales extends MY_Controller
                 $item_type 		= $_POST['product_type'][$r];
                 $item_code 		= $_POST['product_code'][$r];
 				$item_note 		= $_POST['product_note'][$r];
+                $location       = $_POST['location'][$r];
                 $item_name 		= $_POST['product_name'][$r];
 				$item_cost		= $_POST['item_cost'][$r];
 				$item_peice     = $_POST['piece'][$r];
@@ -4085,13 +4086,14 @@ class Sales extends MY_Controller
                         'serial_no' 		=> $item_serial,
                         'real_unit_price' 	=> $real_unit_price,
 						'product_noted' 	=> $item_note,
+                        'location'          => $location,
 						'expiry' 			=> $expdate,
 						'expiry_id' 		=> $expire_date_id,
 						'price_id' 			=> $item_price_id
                     );
 					$totalcost	+= $item_cost;
 					$total 		+= $subtotal;
-                }
+                };
             }
 				
             if (empty($products)) {

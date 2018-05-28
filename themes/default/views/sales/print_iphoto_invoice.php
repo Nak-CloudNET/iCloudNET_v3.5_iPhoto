@@ -258,6 +258,15 @@
                                                 <td><?= $this->erp->hrsd($invs->due_date) ?></td>
                                             </tr>
                                         <?php } ?>
+
+                                          <?php if ($invs->attendant) { ?>
+                                            <tr>
+                                                <td>អ្នកចាត់ចែង / Attendant</td>
+                                                <td>:</td>
+                                                <td><?= $invs->attendant ?></td>
+                                            </tr>
+                                        <?php } ?>
+
                                     </table>
                                 </div>
                             </div>
