@@ -233,7 +233,15 @@
         if (sldate = __getItem('sldate')) {
             $('#sldate').val(sldate);
         }
-
+         $(document).on('change', '#wedding_date', function (e) {
+            __setItem('wedding_date', $(this).val());
+        });
+         $(document).on('change', '#delivery_date', function (e) {
+            __setItem('delivery_date', $(this).val());
+        });
+        $(document).on('change', '#attendant', function (e) {
+            __setItem('attendant', $(this).val());
+        });
 		if (slsale_status = __getItem('slsale_status')) {
             $('#slsale_status').val(slsale_status);
         }
@@ -283,6 +291,9 @@
         }
          if (wedding_date = __getItem('wedding_date')) {
             $('#wedding_date').val(wedding_date);
+        }
+        if (attendant = __getItem('attendant')) {
+            $('#attendant').val(attendant);
         }
         $(document).on('change', '#slbiller', function (e) {
             __setItem('slbiller', $(this).val());

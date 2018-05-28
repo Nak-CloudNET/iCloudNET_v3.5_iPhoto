@@ -3909,6 +3909,7 @@ class Sales extends MY_Controller
 			
             $warehouse_id 		= $this->input->post('warehouse');
             $customer_id 		= $this->input->post('customer_1');
+            $attendant          = $this->input->post('attendant');
 			$group_area 		= $this->input->post('area');
 			$amout_paid 		= $this->input->post('amount-paid');
 			$saleman_by 		= $this->input->post('saleman');
@@ -4149,6 +4150,7 @@ class Sales extends MY_Controller
 				'date' 					=> $date,
                 'reference_no' 			=> $reference,
                 'customer_id' 			=> $customer_id,
+                'attendant'             => $attendant,
                 'customer' 				=> $customer,
 				'group_areas_id' 		=> $group_area,
                 'biller_id' 			=> $biller_id,
@@ -5786,6 +5788,7 @@ class Sales extends MY_Controller
 
             $warehouse_id           = $this->input->post('warehouse');
             $customer_id            = $this->input->post('customer');
+            $attendant              = $this->input->post('attendant');
             $biller_id              = $this->input->post('biller');
             $group_area             = $this->input->post('area');
 			$saleman_by             = $this->input->post('saleman');
@@ -6012,6 +6015,7 @@ class Sales extends MY_Controller
                 'reference_no' 			=> $reference,
                 'customer_id' 			=> $customer_id,
                 'customer' 				=> $customer,
+                'attendant'             => $attendant,
 				'group_areas_id' 		=> $group_area,
                 'biller_id' 			=> $biller_id,
                 'biller' 				=> $biller,

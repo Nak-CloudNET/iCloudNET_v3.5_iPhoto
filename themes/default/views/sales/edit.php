@@ -370,6 +370,12 @@
                                             ?>
                                         </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <?= lang("attendant", "attendant"); ?>
+                                            <?php echo form_input('attendant',(isset($_POST['bill_to']) ? $_POST['bill_to'] : $inv->attendant), 'class="form-control input-tip" id="attendant" '); ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
