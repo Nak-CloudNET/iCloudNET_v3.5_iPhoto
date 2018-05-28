@@ -115,6 +115,10 @@ $('#slsale_status').change(function (e) {
 });
 if (slsale_status = __getItem('slsale_status')) {
 	$('#slsale_status').select2("val", slsale_status);
+
+}
+if (wedding_date = __getItem('wedding_date')) {
+	$('#wedding_date').select2("val", wedding_date);
 }
 $('#slpayment_status').change(function (e) {
 	var ps = $(this).val();
@@ -935,6 +939,9 @@ if (__getItem('sloitems')) {
 				}
 				if (__getItem('slbiller')) {
 					__removeItem('slbiller');
+				}
+				if (__getItem('wedding_date')) {
+					__removeItem('wedding_date');
 				}
 				if (__getItem('gift_card_no')) {
 					__removeItem('gift_card_no');

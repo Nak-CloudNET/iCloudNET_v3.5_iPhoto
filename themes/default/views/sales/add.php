@@ -551,13 +551,13 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <?= lang("pre_wedding", "pre_wedding"); ?>
-                                <?php echo form_input('delivery_date',($sale_order->delivery_date), 'class="form-control input-tip date" id="delivery_date" readonly'); ?>
+                                <?php echo form_input('delivery_date',($sale_order->delivery_date), 'class="form-control input-tip date" id="delivery_date" '); ?>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <?= lang("wedding_date", "wedding_date"); ?>
-                                <?php echo form_input('wedding_date',(isset($_POST['wedding_date']) ? $_POST['wedding_date'] : ""), 'class="form-control input-tip date" id="wedding_date" readonly'); ?>
+                                <?php echo form_input('wedding_date',(isset($_POST['wedding_date']) ? $_POST['wedding_date'] : ""), 'class="form-control input-tip date" id="wedding_date" '); ?>
                             </div>
                         </div>
 
@@ -689,6 +689,12 @@
                                             }
                                             echo form_dropdown('category', $cate, (isset($_POST['category']) ? $_POST['category'] : ''), 'id="category" class="form-control input-tip select" data-placeholder="' . lang("select") . ' ' . lang("category") . '" style="width:100%;" ');
                                             ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <?= lang("attendant", "attendant"); ?>
+                                            <?php echo form_input('attendant','', 'class="form-control input-tip" id="attendant" '); ?>
                                         </div>
                                     </div>
                                 </div>

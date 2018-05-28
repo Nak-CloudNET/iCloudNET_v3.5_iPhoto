@@ -215,6 +215,12 @@
         $(document).on('change', '#sldate', function (e) {
             __setItem('sldate', $(this).val());
         });
+         $(document).on('change', '#wedding_date', function (e) {
+            __setItem('wedding_date', $(this).val());
+        });
+         $(document).on('change', '#delivery_date', function (e) {
+            __setItem('delivery_date', $(this).val());
+        });
 		$('#slsaleman').on('change', function (e) {
 			__setItem('saleman', $(this).val());
         });
@@ -222,6 +228,12 @@
 		
         if (sldate = __getItem('sldate')) {
             $('#sldate').val(sldate);
+        }
+        if (wedding_date = __getItem('wedding_date')) {
+            $('#wedding_date').val(wedding_date);
+        }
+        if (delivery_date = __getItem('delivery_date')) {
+            $('#delivery_date').val(delivery_date);
         }
 		if (saleman = __getItem('saleman')) {
             $('#slsaleman').val(saleman);

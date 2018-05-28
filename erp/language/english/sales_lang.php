@@ -453,4 +453,4 @@ $lang['iphoto_invoice'] 					= "iPhoto Invoice";
 $lang['print_iphoto'] 						= "Print iPhoto";
 $lang['pre_wedding'] 						= "Pre Wedding";
 $lang['wedding_date'] 						= "Wedding Date";
-
+$lang['attendant'] 							= "Attendant";
