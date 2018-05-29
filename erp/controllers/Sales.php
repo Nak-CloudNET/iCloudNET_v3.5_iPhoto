@@ -3934,6 +3934,8 @@ class Sales extends MY_Controller
             $quote_id 			= $this->input->post('quote_id') ? $this->input->post('quote_id') : NULL;
 			$paid_by 			= $this->input->post('paid_by');
 			$delivery_update 	= $this->input->post('delivery_id_update');
+            $delivery_date      = $this->input->post('delivery_date');
+            $wedding_date       = $this->input->post('wedding_date');
 			
             $total 				= 0;
             $product_tax 		= 0;
@@ -4188,9 +4190,12 @@ class Sales extends MY_Controller
 				'type_id' 				=> $this->input->post('type_id'),
 				'so_id' 				=> (isset($sale_order_id)? $sale_order_id:$so_deposit_no),
 				'quote_id' 				=> (isset($sale_q->id)?$sale_q->id:''),
-				'deposit_so_id'			=> (isset($so_deposit_no)? $so_deposit_no:'')
+				'deposit_so_id'			=> (isset($so_deposit_no)? $so_deposit_no:''),
+                'delivery_date'         => $this->erp->fld($delivery_date),
+                'wedding_date'          => $this->erp->fld($wedding_date)
+
+
             );
-			
             if ($payment_status == 'partial' || $payment_status == 'paid') {
 				if ($this->input->post('payment_date')) {
                     $payment_date = $this->erp->fld($this->input->post('payment_date'));
