@@ -4541,7 +4541,8 @@ class Sales extends MY_Controller
 					$row->piece			  = $item->piece;
 					$row->wpiece		  = $item->wpiece;
 					$row->w_piece		  = $item->wpiece;
-					$row->product_noted = $item->product_noted;
+					$row->product_noted   = $item->product_noted;
+                    $row->location        = $item->location;
                     $combo_items = FALSE;
                     if ($row->type == 'combo') {
                         $combo_items = $this->sales_model->getProductComboItems($row->id, $item->warehouse_id);
@@ -4801,7 +4802,6 @@ class Sales extends MY_Controller
 				$this->data['sale_order_items'] = json_encode($pr);
 				$this->data['payment_deposit'] = (isset($payment_deposit) ? $payment_deposit : 0);
 			}
-			
 			$this->load->model('purchases_model');
 			$this->data['exchange_rate'] 	= $this->site->getCurrencyByCode('KHM_o');
             $this->data['error'] 			= (validation_errors() ? validation_errors() : $this->session->flashdata('error'));
