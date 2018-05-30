@@ -45,8 +45,11 @@
             if (__getItem('delivery_date')) {
                 __removeItem('delivery_date');
             }
-             if (__getItem('wedding_date')) {
+            if (__getItem('wedding_date')) {
                 __removeItem('wedding_date');
+            }
+             if (__getItem('attendant')) {
+                __removeItem('attendant');
             }
             if (__getItem('slwarehouse')) {
                 __removeItem('slwarehouse');
