@@ -121,6 +121,8 @@ class MY_Controller extends CI_Controller {
 		$meta['get_purchases_request_alerts'] = $this->site->get_purchases_request_alerts();
 		$meta['get_purchases_order_alerts'] = $this->site->get_purchases_order_alerts();
 		$meta['get_sale_order_order_alerts'] = $this->site->get_sale_order_order_alerts();
+        $meta['prewedding_alert'] = $this->site->get_pre_wedding_alert();;
+        $meta['wedding_alert'] = $this->site->get_wedding_alert();
 		
         $this->load->view($this->theme . 'header', $meta);
         $this->load->view($this->theme . $page, $data);

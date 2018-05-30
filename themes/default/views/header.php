@@ -277,6 +277,22 @@
 								<i class="fa fa-exclamation-triangle"></i><p><?= lang('alerts') ?></p>
 							</a>
 							<ul class="dropdown-menu pull-right">
+							<?php if (1) { ?>
+								<li>
+									<a href="<?= site_url('reports/quantity_alerts') ?>" class="">
+										<span class="label label-danger pull-right" style="margin-top:3px;"><?= $prewedding_alert; ?></span>
+										<span style="padding-right: 35px;"><?= lang('prewedding_alert') ?></span>
+									</a>
+								</li>
+							<?php } ?>
+							<?php if (1) { ?>
+								<li>
+									<a href="<?= site_url('reports/quantity_alerts') ?>" class="">
+										<span class="label label-danger pull-right" style="margin-top:3px;"><?= $wedding_alert; ?></span>
+										<span style="padding-right: 35px;"><?= lang('wedding_alert') ?></span>
+									</a>
+								</li>
+							<?php } ?>
 							
 							<?php if ($qty_alert_num > 0) { ?>
 								<li>

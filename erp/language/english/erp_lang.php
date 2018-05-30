@@ -987,3 +987,5 @@ $lang['add_product_transfer'] = "Add Product Transfer";
 $lang['product_count_list'] = "Product Count List";
 $lang['add_product_count'] = "Add Product Count";
 $lang['add_delivery'] = "Add Delivery";
+$lang['prewedding_alert'] = "Pre Wedding Alert";
+$lang['wedding_alert'] = "Wedding Alert";
