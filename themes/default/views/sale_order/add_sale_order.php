@@ -89,6 +89,12 @@
             if (__getItem('slpayment_term')) {
                 __removeItem('slpayment_term');
             }
+            if (__getItem('delivery_date')) {
+                __removeItem('delivery_date');
+            }
+             if (__getItem('wedding_date')) {
+                __removeItem('wedding_date');
+            }
 			<?=$this->session->set_userdata('remove_so2', '0');?>
            // __removeItem('remove_slls');
 		}
