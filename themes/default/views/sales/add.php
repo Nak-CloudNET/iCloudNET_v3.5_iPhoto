@@ -42,6 +42,12 @@
             if (__getItem('slref')) {
                 __removeItem('slref');
             }
+            if (__getItem('delivery_date')) {
+                __removeItem('delivery_date');
+            }
+             if (__getItem('wedding_date')) {
+                __removeItem('wedding_date');
+            }
             if (__getItem('slwarehouse')) {
                 __removeItem('slwarehouse');
             }
@@ -71,7 +77,7 @@
             }
              if (__getItem('slsale_status')) {
             __removeItem('slsale_status');
-        }
+            }
 			if (__getItem('slpayment_status')) {
                 __removeItem('slpayment_status');
             }
