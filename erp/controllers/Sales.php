@@ -5837,6 +5837,7 @@ class Sales extends MY_Controller
 				$item_peice    		= $_POST['piece'][$r];
 				$item_wpeice   		= $_POST['wpiece'][$r];
 				$product_noted 		= $_POST['product_note'][$r];
+                $location           = $_POST['location'][$r];
                 $item_option 		= isset($_POST['product_option'][$r]) && $_POST['product_option'][$r] != 'false' ? $_POST['product_option'][$r] : NULL;
                 //$option_details = $this->sales_model->getProductOptionByID($item_option);
                 $expire_date_id 	= isset($_POST['expdate'][$r]) && $_POST['expdate'][$r] != 'false' ? $_POST['expdate'][$r] : null;
@@ -5972,6 +5973,7 @@ class Sales extends MY_Controller
                         'serial_no' 		=> $item_serial,
                         'real_unit_price' 	=> $real_unit_price,
 						'product_noted' 	=> $product_noted,
+                        'location'     => $location,
 						'expiry' 			=> $expdate,
 						'expiry_id'			=> $expire_date_id,
 						'old_sqty' 			=> $old_sqty,
@@ -6335,6 +6337,7 @@ class Sales extends MY_Controller
 				$row->start_date = $item->start_date;
 				$row->end_date = $item->end_date;
 				$row->product_noted = $item->product_noted;
+                $row->location = $item->location;
 
                 $group_prices = $this->sales_model->getProductPriceGroup($row->id, $customer->price_group_id);
 				$all_group_prices = $this->sales_model->getProductPriceGroup($row->id);

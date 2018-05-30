@@ -846,6 +846,15 @@
 
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="pnote" class="col-sm-4 control-label"><?= lang('location') ?></label>
+
+                        <div class="col-sm-8">
+                         <!--   <input type="text" class="form-control kb-pad" id="pnote">-->
+                            <textarea id="location"></textarea>
+
+                        </div>
+                    </div>
 					
 					
 					
