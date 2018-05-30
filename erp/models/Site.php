@@ -310,7 +310,7 @@ class Site extends CI_Model
 	public function get_pre_wedding_alert()
 	{
 		$this->db->select('COUNT(*) AS count');
-		$this->db->where('DATEDIFF(erp_sale_order.delivery_date,CURDATE())<=15');
+		$this->db->where('DATEDIFF(erp_sale_order.delivery_date,CURDATE())<=15 AND DATEDIFF(erp_sale_order.delivery_date,CURDATE())>0');
 		$q = $this->db->get('sale_order');
 		if($q->num_rows() > 0 ){
 			$q = $q->row();
@@ -321,7 +321,7 @@ class Site extends CI_Model
 	public function get_wedding_alert()
 	{
 		$this->db->select('COUNT(*) AS count');
-		$this->db->where('DATEDIFF(erp_sale_order.wedding_date,CURDATE())<=15');
+		$this->db->where('DATEDIFF(erp_sale_order.wedding_date,CURDATE())<=15 AND DATEDIFF(erp_sale_order.wedding_date,CURDATE())>0');
 		$q = $this->db->get('sale_order');
 		if($q->num_rows() > 0 ){
 			$q = $q->row();

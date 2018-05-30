@@ -287,7 +287,7 @@
 							<?php } ?>
 							<?php if (1) { ?>
 								<li>
-									<a href="<?= site_url('reports/quantity_alerts') ?>" class="">
+									<a href="<?= site_url('sale_order/list_wedding_alert') ?>" class="">
 										<span class="label label-danger pull-right" style="margin-top:3px;"><?= $wedding_alert; ?></span>
 										<span style="padding-right: 35px;"><?= lang('wedding_alert') ?></span>
 									</a>

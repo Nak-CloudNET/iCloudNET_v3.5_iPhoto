@@ -697,6 +697,38 @@ class Sale_order extends MY_Controller
         $meta = array('page_title' => lang('sale_order_list'), 'bc' => $bc);
         $this->page_construct('sale_order/list_pre_wedding_date_alert', $meta, $this->data);
     }
+     function list_wedding_alert($sale_order_id = null, $warehouse_id = Null){
+        
+        $this->erp->checkPermissions('index', null, 'sale_order');
+        $this->data['products'] = $this->site->getProducts();
+        $this->data['users'] = $this->reports_model->getStaff();
+        $this->data['agencies'] = $this->site->getAllUsers();
+        
+        if ($this->Owner || $this->Admin || !$this->session->userdata('warehouse_id')) {
+            $this->data['warehouses'] = $this->site->getAllWarehouses();
+            $this->data['warehouse_id'] = $warehouse_id;
+            $this->data['warehouse'] = $warehouse_id ? $this->site->getWarehouseByID($warehouse_id) : NULL;
+            
+        } else {
+            
+            $this->data['warehouses'] = $this->products_model->getUserWarehouses();
+            if($warehouse_id){
+                $this->data['warehouse_id'] = $warehouse_id;
+                $this->data['warehouse'] = $warehouse_id ? $this->site->getWarehouseByID($warehouse_id) : NULL;
+            }else{
+                
+                $this->data['warehouse_id'] = str_replace(',', '-',$this->session->userdata('warehouse_id'));
+                $this->data['warehouse'] = $this->session->userdata('warehouse_id') ? $this->products_model->getUserWarehouses() : NULL;
+            }
+        }
+        
+        $biller_id = $this->session->userdata('biller_id');
+        $this->data['billers'] = $this->site->getAllCompanies('biller');
+        $this->data['user_billers'] = $this->sale_order_model->getAllCompaniesByID($biller_id);
+        $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => '#', 'page' => lang('sale_order_list')));
+        $meta = array('page_title' => lang('sale_order_list'), 'bc' => $bc);
+        $this->page_construct('sale_order/list_wedding_date_alert', $meta, $this->data);
+    }
 	/*========================================end local updated====================================*/
 	
 	function modal_order_view($id = NULL)
@@ -1389,7 +1421,61 @@ class Sale_order extends MY_Controller
                 ->join('deliveries', 'deliveries.sale_id = sale_order.id', 'left')
                 ->join('quotes', 'quotes.id = sale_order.quote_id', 'left')
                 ->join('erp_deposits', 'erp_deposits.so_id = erp_sale_order.id', 'left')
-                ->where('DATEDIFF(erp_sale_order.delivery_date,CURDATE())<=15')
+                ->where('DATEDIFF(erp_sale_order.delivery_date,CURDATE())<=15 AND DATEDIFF(erp_sale_order.delivery_date,CURDATE())>0')
+                ->group_by('sale_order.id');
+
+            if(isset($_REQUEST['d'])){
+                $date = $_GET['d'];
+                $date1 = str_replace("/", "-", $date);
+                $date =  date('Y-m-d', strtotime($date1));
+                
+                $this->datatables
+                        ->where("date >=", $date)
+                        ->where('DATE_SUB(date, INTERVAL 1 DAY) <= CURDATE()')
+                        ->where('sales.payment_term <>', 0);
+            }
+            
+        
+       
+        
+        $this->datatables->add_column("Actions", $action, "sale_order.id, sale_order.customer_id");
+        $this->datatables->unset_column('sale_order.customer_id');
+        echo $this->datatables->generate();
+    }
+    function getWeddingAlert($warehouse_id = NULL)
+    {
+
+        $biller_id = $this->session->userdata('biller_id');
+        $this->load->library('datatables');
+   
+            
+            $this->datatables
+                        ->select("
+                            sale_order.id,
+                            sale_order.customer_id,
+                            sale_order.date,
+                            quotes.reference_no as qref,
+                            sale_order.reference_no,
+                            sale_order.biller,
+                            IF(erp_companies.company = '', erp_companies.`name`, erp_companies.company) AS customer,
+                            users.username as saleman,
+                            sale_order.delivery_date,
+                            sale_order.wedding_date,
+                            sale_order.sale_status,
+                            sale_order.grand_total,
+                            COALESCE(SUM(erp_deposits.amount), 0) as deposit,
+                            erp_sale_order.grand_total-COALESCE(SUM(erp_deposits.amount), 0) as balance,
+                            sale_order.order_status
+                        ")
+                ->from('sale_order')
+                ->join('companies', 'companies.id = sale_order.customer_id', 'left')
+                ->join('users', 'users.id = sale_order.saleman_by', 'left')
+                ->join('companies as delivery', 'delivery.id = sale_order.delivery_by', 'left')
+                ->join('deliveries', 'deliveries.sale_id = sale_order.id', 'left')
+                ->join('quotes', 'quotes.id = sale_order.quote_id', 'left')
+                ->join('erp_deposits', 'erp_deposits.so_id = erp_sale_order.id', 'left')
+                ->where('DATEDIFF(erp_sale_order.wedding_date,CURDATE())<=15 AND DATEDIFF(erp_sale_order.wedding_date,CURDATE())>0')
+                ->order_by('sale_order.wedding_date','ACS')
                 ->group_by('sale_order.id');
 
             if(isset($_REQUEST['d'])){
