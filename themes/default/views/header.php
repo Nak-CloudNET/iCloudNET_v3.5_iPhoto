@@ -279,7 +279,7 @@
 							<ul class="dropdown-menu pull-right">
 							<?php if (1) { ?>
 								<li>
-									<a href="<?= site_url('reports/quantity_alerts') ?>" class="">
+									<a href="<?= site_url('sale_order/list_pre_wedding_alert') ?>" class="">
 										<span class="label label-danger pull-right" style="margin-top:3px;"><?= $prewedding_alert; ?></span>
 										<span style="padding-right: 35px;"><?= lang('prewedding_alert') ?></span>
 									</a>
