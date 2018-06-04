@@ -192,29 +192,29 @@
                                                 <td style="width: 30%;"><?= $invs->customer ?></td>
                                             </tr>
                                         <?php } ?>
-                                        <?php if(!empty($supplier->address_kh || $supplier->address)) { ?>
+                                        <?php if(!empty($customer->address_kh || $supplier->address)) { ?>
                                             <tr>
                                                 <td>អាសយដ្ឋាន / Address </td>
                                                 <td>:</td>
                                                 <?php if(!empty($supplier->address_kh)) { ?>
-                                                    <td><?= $supplier->address_kh?></td>
+                                                    <td><?= $customer->address_kh?></td>
                                                 <?php }else { ?>
-                                                    <td><?= $supplier->address ?></td>
+                                                    <td><?= $customer->address ?></td>
                                                 <?php } ?>
                                             </tr>
                                         <?php } ?>
-                                        <?php if(!empty($supplier->address_kh || $supplier->address)) { ?>
+                                        <?php if(!empty($customer->address_kh || $supplier->address)) { ?>
                                             <tr>
                                                 <td>ទូរស័ព្ទលេខ (Tel)</td>
                                                 <td>:</td>
-                                                <td><?= $supplier->phone ?></td>
+                                                <td><?= $customer->phone ?></td>
                                             </tr>
                                         <?php } ?>
-                                        <?php if(!empty($supplier->vat_no)) { ?>
+                                        <?php if(!empty($customer->vat_no)) { ?>
                                             <tr>
                                                 <td style="width: 20% !important">លេខអត្តសញ្ញាណកម្ម អតប </td>
                                                 <td>:</td>
-                                                <td><?= $supplier->vat_no ?></td>
+                                                <td><?= $customer->vat_no ?></td>
                                             </tr>
                                         <?php } ?>
                                     </table>
@@ -241,6 +241,20 @@
                                                 <td style="width: 30% !important">កាលបរិច្ឆេទនៃការបង់ប្រាក់ </td>
                                                 <td>:</td>
                                                 <td><?= $this->erp->hrsd($invs->due_date) ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                        <?php if ($customer->name_kh) { ?>
+                                            <tr>
+                                                <td>កូនប្រុស/ Groom</td>
+                                                <td>:</td>
+                                                <td><?= $customer->name_kh ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                         <?php if ($customer->bride_name) { ?>
+                                            <tr>
+                                                <td>កូនស្រី/ Bride</td>
+                                                <td>:</td>
+                                                <td><?= $customer->bride_name ?></td>
                                             </tr>
                                         <?php } ?>
                                     </table>
@@ -527,11 +541,19 @@
                     <tr>
                         <th colspan="7">
                             <div class="myhide row">
-                                <div class="co-sm-5" style="float:left;margin-right:10px;">
-                                    <img width='100px' height='105px'  src="<?= base_url('assets/uploads/qrcodes/line.png') ?>">
-                                    <img width='100px' height='100px'  src="<?= base_url('assets/uploads/qrcodes/wechat.png') ?>">
-                                </div>
-                                <div class="col-sm-7">
+                                <div class="co-sm-2" style="float:left;margin-right:10px;">
+                                        <center>
+                                            <b>Line</b>
+                                        </center>
+                                        <img width='100px' height='105px'  src="<?= base_url('assets/uploads/qrcodes/line.png') ?>">
+                                    </div>
+                                    <div class="co-sm-2" style="float:left;margin-right:10px;">
+                                        <center>
+                                            <b>Wechat</b>
+                                        </center>
+                                        <img width='100px' height='100px'  src="<?= base_url('assets/uploads/qrcodes/wechat.png') ?>">
+                                    </div>
+                                <div class="col-sm-9">
                                     <div style="margin-top: 15px;">
                                         <?php if(!empty($billers->vat_no)) { ?>
                                             <p>លេខអត្តសញ្ញាណកម្ម អតប (VAT No):&nbsp;<?= $billers->vat_no; ?></p>

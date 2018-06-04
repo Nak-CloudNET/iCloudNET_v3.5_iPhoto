@@ -556,8 +556,16 @@
                     <tr>
                         <th colspan="9">
                              <div class="myhide">
-                                    <div class="co-sm-5" style="float:left;margin-right:10px;">
+                                    <div class="co-sm-2" style="float:left;margin-right:10px;">
+                                        <center>
+                                            <b>Line</b>
+                                        </center>
                                         <img width='100px' height='105px'  src="<?= base_url('assets/uploads/qrcodes/line.png') ?>">
+                                    </div>
+                                    <div class="co-sm-2" style="float:left;margin-right:10px;">
+                                        <center>
+                                            <b>Wechat</b>
+                                        </center>
                                         <img width='100px' height='100px'  src="<?= base_url('assets/uploads/qrcodes/wechat.png') ?>">
                                     </div>
                                     <div style="margin-top: 15px;">
