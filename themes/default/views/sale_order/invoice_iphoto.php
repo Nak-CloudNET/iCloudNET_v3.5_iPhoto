@@ -192,15 +192,12 @@
                                                 <td style="width: 30%;"><?= $customer->company ?></td>
                                             </tr>
                                         <?php } ?>
-                                        <?php if(!empty($customer->name_kh || $customer->name)) { ?>
+                                        <?php if(!empty( $customer->name)) { ?>
                                             <tr>
-                                                <td>អតិថិជន / Customer </td>
+                                                <td style="width: 30%;">អតិថិជន / Customer </td>
                                                 <td>:</td>
-                                                <?php if(($customer->name_kh)) { ?>
-                                                    <td><?= $customer->name_kh ?></td>
-                                                <?php }else { ?>
-                                                    <td><?= $customer->name ?></td>
-                                                <?php } ?>
+                                                <td><?= $customer->name ?></td>
+ 
                                             </tr>
                                         <?php } ?>
                                         <?php if(!empty($customer->address_kh || $customer->address)) { ?>
@@ -226,6 +223,13 @@
                                                 <td style="width: 20% !important">លេខអត្តសញ្ញាណកម្ម អតប </td>
                                                 <td>:</td>
                                                 <td><?= $customer->vat_no ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                        <?php if(!empty($rows)) { ?>
+                                            <tr>
+                                                <td style="width: 20% !important">ទីតាំង / Location </td>
+                                                <td>:</td>
+                                                <td><?= $rows[0]->location ?></td>
                                             </tr>
                                         <?php } ?>
                                     </table>
