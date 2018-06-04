@@ -274,7 +274,14 @@
 						<?php } ?>                                                            
 						<li class="dropdown hidden-sm">
 							<a class="btn blightOrange tip" title="<?= lang('alerts') ?>" data-placement="left" data-toggle="dropdown" href="#">
-								<i class="fa fa-exclamation-triangle"></i><p><?= lang('alerts') ?></p>
+								<i class="fa fa-exclamation-triangle">
+									<span class="label label-danger pull-right" style="margin-top:3px;">
+										<?= $prewedding_alert+$wedding_alert+$qty_alert_num+$alert_num+$payment_customer_alert_num->count+$payment_supplier_alert_num->count+$customers_alert_num+ $get_purchases_request_alerts+$get_purchases_order_alerts+$quoties_alert_num+$get_sale_order_order_alerts; ?>
+										
+									</span></i>
+
+								<p><?= lang('alerts') ?></p>
+
 							</a>
 							<ul class="dropdown-menu pull-right">
 							<?php if (1) { ?>
@@ -406,10 +413,10 @@
 									</a>
 								</li>
 								<li>
-									<a href="<?= site_url('sales/delivery_alerts/') ?>" class="">
+								<!-- 	<a href="<?= site_url('sales/delivery_alerts/') ?>" class="">
 										<span class="label label-danger pull-right" style="margin-top:3px;"><?= $deliveries_alert_num; ?></span>
 										<span style="padding-right: 35px;"><?= lang('delivery_alerts') ?></span>
-									</a>
+									</a> -->
 								</li>
 							</ul>
 						</li>
