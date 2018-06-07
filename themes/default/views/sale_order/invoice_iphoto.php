@@ -16,7 +16,7 @@
         margin: 20px auto;
         padding: 10px;
         font-size: 14px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+       /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);*/
         position:relative;
     }
     .title-header tr{
@@ -225,13 +225,6 @@
                                                 <td><?= $customer->vat_no ?></td>
                                             </tr>
                                         <?php } ?>
-                                        <?php if(!empty($rows)) { ?>
-                                            <tr>
-                                                <td style="width: 20% !important">ទីតាំង / Location </td>
-                                                <td>:</td>
-                                                <td><?= $rows[0]->location ?></td>
-                                            </tr>
-                                        <?php } ?>
                                     </table>
                                 </div>
                                 <div class="col-sm-5 col-xs-5">
@@ -328,6 +321,9 @@
                         </td>
                         <td style="vertical-align: middle;">
                             <?php echo $row->product_noted;?>
+                             <?php if(!empty($rows)) { ?>
+                                    ទីតាំង / Location <?= $rows[0]->location ?>
+                            <?php } ?>
                         </td>
                         <td style="vertical-align: middle; text-align: right">
                             <?php

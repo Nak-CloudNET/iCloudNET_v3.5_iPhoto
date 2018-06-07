@@ -17,7 +17,7 @@
         margin: 20px auto;
         padding: 10px;
         font-size: 15px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+       /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);*/
         position:relative;
     }
     .title-header tr{
@@ -273,13 +273,7 @@
                                                 <td><?= $invs->attendant ?></td>
                                             </tr>
                                         <?php } ?>
-                                         <?php if ($rows[0]->location) { ?>
-                                            <tr>
-                                                <td>ទីតាំង / Location</td>
-                                                <td>:</td>
-                                                <td><?= $rows[0]->location ?></td>
-                                            </tr>
-                                        <?php } ?>
+                                     
                                         <?php if ($customer->bride_name) { ?>
                                             <tr>
                                                 <td>កូនស្រី/ Bride</td>
@@ -344,6 +338,11 @@
                         </td>
                         <td style="vertical-align: middle;">
                             <?=$row->product_noted;?>
+                            <?php if ($rows[0]->location) { ?>
+                                    ទីតាំង / Location :
+                                   <?= $rows[0]->location ?>
+
+                            <?php } ?>
                         </td>
                         <td style="vertical-align: middle; text-align: right">
                             <?php
