@@ -180,14 +180,14 @@
                                 
                             </div>
                             <div class="row" style="text-align: left;">
-                                <div class="col-sm-7 col-xs-7">
+                                <div class="col-sm-6 col-xs-6">
                                     <table >
                                         <?php
                                         if(!empty($customer->company)) { ?>
                                             <tr>
-                                                <td style="width: 40%;">អតិថិជន / Customer</td>
+                                                <td style="width: 45%;">អតិថិជន / Customer</td>
                                                 <td style="width: 5%;">:</td>
-                                                <td style="width: 30%;"><?= $customer->company ?></td>
+                                                <td ><?= $customer->company ?></td>
                                             </tr>
                                         <?php } ?>
                                         <?php if(!empty($customer->name_kh || $customer->name)) { ?>
@@ -226,9 +226,16 @@
                                                 <td><?= $customer->vat_no ?></td>
                                             </tr>
                                         <?php } ?>
+                                        <?php if ($customer->name_kh) { ?>
+                                            <tr>
+                                                <td>កូនប្រុស/ Groom</td>
+                                                <td>:</td>
+                                                <td><?= $customer->name_kh ?></td>
+                                            </tr>
+                                        <?php } ?>
                                     </table>
                                 </div>
-                                <div class="col-sm-5 col-xs-5">
+                                <div class="col-sm-6 col-xs-6">
                                     <table class="noPadding" border="none">
                                         <tr>
                                             <td style="width: 45%;">លេខរៀង / N<sup>o</sup></sup></td>
@@ -264,6 +271,20 @@
                                                 <td>អ្នកចាត់ចែង / Attendant</td>
                                                 <td>:</td>
                                                 <td><?= $invs->attendant ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                         <?php if ($rows[0]->location) { ?>
+                                            <tr>
+                                                <td>ទីតាំង / Location</td>
+                                                <td>:</td>
+                                                <td><?= $rows[0]->location ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                        <?php if ($customer->bride_name) { ?>
+                                            <tr>
+                                                <td>កូនស្រី/ Bride</td>
+                                                <td>:</td>
+                                                <td><?= $customer->bride_name ?></td>
                                             </tr>
                                         <?php } ?>
 

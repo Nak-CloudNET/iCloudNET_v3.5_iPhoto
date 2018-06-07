@@ -542,17 +542,17 @@
                         <th colspan="7">
                             <div class="myhide row">
                                 <div class="co-sm-2" style="float:left;margin-right:10px;">
-                                        <center>
-                                            <b>Line</b>
-                                        </center>
-                                        <img width='100px' height='105px'  src="<?= base_url('assets/uploads/qrcodes/line.png') ?>">
-                                    </div>
-                                    <div class="co-sm-2" style="float:left;margin-right:10px;">
-                                        <center>
-                                            <b>Wechat</b>
-                                        </center>
-                                        <img width='100px' height='100px'  src="<?= base_url('assets/uploads/qrcodes/wechat.png') ?>">
-                                    </div>
+                                    <center>
+                                        <b>Line</b>
+                                    </center>
+                                    <img width='100px' height='105px'  src="<?= base_url('assets/uploads/qrcodes/line.png') ?>">
+                                </div>
+                                <div class="co-sm-2" style="float:left;margin-right:10px;">
+                                    <center>
+                                        <b>Wechat</b>
+                                    </center>
+                                    <img width='100px' height='100px'  src="<?= base_url('assets/uploads/qrcodes/wechat.png') ?>">
+                                </div>
                                 <div class="col-sm-9">
                                     <div style="margin-top: 15px;">
                                         <?php if(!empty($billers->vat_no)) { ?>
