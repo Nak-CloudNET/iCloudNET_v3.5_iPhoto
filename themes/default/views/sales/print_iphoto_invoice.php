@@ -226,13 +226,7 @@
                                                 <td><?= $customer->vat_no ?></td>
                                             </tr>
                                         <?php } ?>
-                                        <?php if ($customer->name_kh) { ?>
-                                            <tr>
-                                                <td>កូនប្រុស/ Groom</td>
-                                                <td>:</td>
-                                                <td><?= $customer->name_kh ?></td>
-                                            </tr>
-                                        <?php } ?>
+                                      
                                     </table>
                                 </div>
                                 <div class="col-sm-6 col-xs-6">
@@ -273,7 +267,13 @@
                                                 <td><?= $invs->attendant ?></td>
                                             </tr>
                                         <?php } ?>
-                                     
+                                        <?php if ($customer->name_kh) { ?>
+                                            <tr>
+                                                <td>កូនប្រុស/ Groom</td>
+                                                <td>:</td>
+                                                <td><?= $customer->name_kh ?></td>
+                                            </tr>
+                                        <?php } ?>
                                         <?php if ($customer->bride_name) { ?>
                                             <tr>
                                                 <td>កូនស្រី/ Bride</td>
