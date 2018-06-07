@@ -277,7 +277,7 @@
 								
 								<i class="fa fa-exclamation-triangle" style="margin-left: 20px;">
 								</i>
-								<span class="label label-danger pull-right" style="margin-right:-10px;margin-top: -4px;">
+								<span class="number bred black">
 									<?= $prewedding_alert+$wedding_alert+$qty_alert_num+$alert_num+$payment_customer_alert_num->count+$payment_supplier_alert_num->count+$customers_alert_num+ $get_purchases_request_alerts+$get_purchases_order_alerts+$quoties_alert_num+$get_sale_order_order_alerts; ?>
 								</span>
 								<p><?= lang('alerts') ?></p>
