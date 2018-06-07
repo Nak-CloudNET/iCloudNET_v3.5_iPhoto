@@ -1195,7 +1195,7 @@ if (slwarehouse = __getItem('slwarehouse')) {
 		$('#pgroup_prices-div').html(opt_group_price);
 		$('select.select').select2({minimumResultsForSearch: 6});
 		$('#pquantity').val(qty);
-		$('#pnote').redactor('set',item.row.product_noted?item.row.product_noted:'');
+		$('#pnote').redactor('set',item.row.note?item.row.note:'');
 		$('#location').redactor('set',item.row.location?item.row.location:'');
 		$('#old_qty').val(qty);
 		$('#pprice_show').val(parseFloat(unit_price).toFixed(2));
@@ -1491,7 +1491,7 @@ if (slwarehouse = __getItem('slwarehouse')) {
 		slitems[item_id].row.price_id = price_id,
 		slitems[item_id].row.option = $('#poption').val() ? $('#poption').val() : '',
 		slitems[item_id].row.expdate = $('#expdate').val() ? $('#expdate').val() : '',
-		slitems[item_id].row.product_noted = $('#pnote').val() ? $('#pnote').val() : '',
+		slitems[item_id].row.note = $('#pnote').val() ? $('#pnote').val() : '',
 		slitems[item_id].row.location = $('#location').val() ? $('#location').val() : '',
 		slitems[item_id].row.serial = $('#pserial').val();
 
@@ -1910,7 +1910,6 @@ function loadItems() {
 		var quote_ID        = __getItem('quote_ID');
 		$("#slTable tbody").empty();
 		slitems = JSON.parse(__getItem('slitems'));
-
 		$('#add_sale, #edit_sale').attr('disabled', false);
 		var sale_price = 0;
 		if (gp) {
@@ -1953,7 +1952,7 @@ function loadItems() {
 				digital_code 		= item.row.digital_code,
 				item_serial 		= item.row.serial,
 				item_item_cur 		= item.row.rate_item_cur,
-				item_note 			= item.row.product_noted,
+				item_noted 			= item.row.note,
 				location 			= item.row.location,
 				item_name 			= item.row.name.replace(/"/g, "&#034;").replace(/'/g, "&#039;"),
 				digital_name 		= item.row.digital_name.replace(/"/g, "&#034;").replace(/'/g, "&#039;"),
@@ -2179,7 +2178,7 @@ function loadItems() {
 
 			var current_date = moment(new Date()).format('DD/MM/YYYY');
 			
-			var pn 					= item_note ? item_note : '';
+			var pn 					= item_noted ? item_noted : '';
 			var ds 					= item_ds ? item_ds : 0;
             var item_dis = ds.indexOf("%") !== -1 ? ds : ds;
 

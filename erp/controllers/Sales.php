@@ -4546,7 +4546,7 @@ class Sales extends MY_Controller
 					$row->piece			  = $item->piece;
 					$row->wpiece		  = $item->wpiece;
 					$row->w_piece		  = $item->wpiece;
-					$row->product_noted   = $item->product_noted;
+					$row->note            = $item->product_noted;
                     $row->location        = $item->location;
                     $combo_items = FALSE;
                     if ($row->type == 'combo') {
@@ -4762,7 +4762,7 @@ class Sales extends MY_Controller
 					$row->digital_name	  = "";
 					$row->digital_id	  = 0;
 					$row->old_qty_rec	  = 0;
-					$row->product_noted   = $item->product_noted;
+					$row->note            = $item->product_noted;
 					if($dig){
 						$row->digital_code 	= $dig->code .' ['. $row->code .']';
 						$row->digital_name 	= $dig->name .' ['. $row->name .']';
@@ -11847,7 +11847,7 @@ class Sales extends MY_Controller
         $customer = $this->site->getCompanyByID($customer_id);
         $customer_group = $this->site->getCustomerGroupByID($customer->customer_group_id);
 		$user_setting = $this->site->getUserSetting($this->session->userdata('user_id'));
-        $rows = $this->sales_model->getProductNumber($sr, $warehouse_id, $user_setting->sales_standard, $user_setting->sales_combo, $user_setting->sales_digital, $user_setting->sales_service, $user_setting->sales_category, $category_id);
+        $rows = $this->sales_model->getProductNames($sr, $warehouse_id, $user_setting->sales_standard, $user_setting->sales_combo, $user_setting->sales_digital, $user_setting->sales_service, $user_setting->sales_category, $category_id);
 		
 		$expiry_status = 0;
 		if($this->site->get_setting()->product_expiry == 1){

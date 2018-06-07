@@ -10,7 +10,7 @@ class Sales_model extends CI_Model
 
     public function getProductNames($term, $warehouse_id, $standard, $combo, $digital, $service, $user_category, $category_id, $limit = 20)
     {
-        $this->db->select('products.id, start_date, end_date, erp_products.code, erp_products.name, erp_products.type, cost, warehouses_products.product_id, warehouses_products.quantity AS qoh, warehouses_products.quantity, price, tax_rate, tax_method, erp_products.image, promotion, promo_price, product_details, details, categories.type AS cate_type, subcategory_id, cf1, COALESCE((SELECT GROUP_CONCAT(sp.`serial_number`) FROM erp_serial as sp WHERE sp.product_id='.$this->db->dbprefix('products').'.id), "") as sep')
+        $this->db->select('products.id, start_date, end_date, erp_products.code, erp_products.name, erp_products.type, cost, warehouses_products.product_id, warehouses_products.quantity AS qoh, warehouses_products.quantity, price, tax_rate, tax_method, erp_products.image, promotion, promo_price, product_details as note, details, categories.type AS cate_type, subcategory_id, cf1, COALESCE((SELECT GROUP_CONCAT(sp.`serial_number`) FROM erp_serial as sp WHERE sp.product_id='.$this->db->dbprefix('products').'.id), "") as sep')
                  ->join('categories', 'categories.id=products.category_id', 'left')
 				 ->join('warehouses_products', 'warehouses_products.product_id=products.id', 'left')
 				 ->group_by('products.id');
@@ -248,7 +248,7 @@ class Sales_model extends CI_Model
 		{
 			$name = explode(" ", $term);
 			$first = $name[0];
-            $this->db->select('products.id, products.code, products.name, products.type, cost,warehouses_products.quantity, warehouses_products.quantity as qoh, price, tax_rate, tax_method, cf1, product_details,subcategory_id, categories.type AS cate_type, details,COALESCE((SELECT GROUP_CONCAT(sp.`serial_number`) 
+            $this->db->select('products.id, products.code, products.name, products.type, cost,warehouses_products.quantity, warehouses_products.quantity as qoh, price, tax_rate, tax_method, cf1, product_details as note,subcategory_id, categories.type AS cate_type, details,COALESCE((SELECT GROUP_CONCAT(sp.`serial_number`) 
 					FROM erp_serial as sp
 				 WHERE sp.product_id='.$this->db->dbprefix('products').'.id
 				), "") as sep')
