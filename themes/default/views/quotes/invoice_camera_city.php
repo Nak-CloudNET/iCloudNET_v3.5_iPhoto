@@ -16,7 +16,7 @@
         margin: 20px auto;
         padding: 10px;
         font-size: 15px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      /*  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);*/
     }
     .title-header tr{
         border: 1px solid #000 !important;
