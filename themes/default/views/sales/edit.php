@@ -25,8 +25,8 @@
         __setItem('sldiscount', '<?= $inv->order_discount_id ?>');
         __setItem('sltax2', '<?= $inv->order_tax_id ?>');
         __setItem('slshipping', '<?= $inv->shipping ?>');
-        __setItem('delivery_date', '<?= $this->erp->hrsd($sale_order->delivery_date) ?>');
-        __setItem('wedding_date', '<?= $this->erp->hrsd($sale_order->wedding_date) ?>');
+        __setItem('delivery_date', '<?= $sale_order->delivery_date?$this->erp->hrsd($sale_order->delivery_date):"" ?>');
+        __setItem('wedding_date', '<?= $sale_order->wedding_date?$this->erp->hrsd($sale_order->wedding_date):"" ?>');
         __setItem('slitems', JSON.stringify(<?= $inv_items; ?>));
 
 		<?php /* if (isset($payment->paid_by)) { */ ?>
@@ -284,7 +284,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <?= lang("wedding_date", "wedding_date"); ?>
-                                <?php echo form_input('wedding_date',$this->erp->hrsd($inv->wedding_date?$inv->wedding_date:''), 'class="form-control input-tip date" id="wedding_date" '); ?>
+                                <?php echo form_input('wedding_date',($inv->wedding_date?$this->erp->hrsd($inv->wedding_date):''), 'class="form-control input-tip date" id="wedding_date" '); ?>
                             </div>
                         </div>
 

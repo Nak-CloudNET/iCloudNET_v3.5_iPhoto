@@ -3934,8 +3934,8 @@ class Sales extends MY_Controller
             $quote_id 			= $this->input->post('quote_id') ? $this->input->post('quote_id') : NULL;
 			$paid_by 			= $this->input->post('paid_by');
 			$delivery_update 	= $this->input->post('delivery_id_update');
-            $delivery_date      = $this->input->post('delivery_date');
-            $wedding_date       = $this->input->post('wedding_date');
+            $delivery_date      = $this->input->post('delivery_date')? $this->erp->fld($this->input->post('delivery_date')):NULL;
+            $wedding_date       = $this->input->post('wedding_date')?$this->erp->fld($this->input->post('wedding_date')):NULL;
 			
             $total 				= 0;
             $product_tax 		= 0;
@@ -4191,8 +4191,8 @@ class Sales extends MY_Controller
 				'so_id' 				=> (isset($sale_order_id)? $sale_order_id:$so_deposit_no),
 				'quote_id' 				=> (isset($sale_q->id)?$sale_q->id:''),
 				'deposit_so_id'			=> (isset($so_deposit_no)? $so_deposit_no:''),
-                'delivery_date'         => $this->erp->fld($delivery_date),
-                'wedding_date'          => $this->erp->fld($wedding_date)
+                'delivery_date'         => $delivery_date,
+                'wedding_date'          => $wedding_date
 
 
             );
@@ -5806,6 +5806,8 @@ class Sales extends MY_Controller
             $payment_status         = 'due';
             $delivery_by            = $this->input->post('delivery_by');
             $delivery_id            = $this->input->post('delivery_id');
+            $delivery_date          = $this->input->post('delivery_date')? $this->erp->fld($this->input->post('delivery_date')):NULL;
+            $wedding_date           = $this->input->post('wedding_date')?$this->erp->fld($this->input->post('wedding_date')):NULL;
 
             $payment_term           = $this->input->post('payment_term');
             $payment_term_details   = $this->site->getAllPaymentTermByID($payment_term);
@@ -6021,6 +6023,8 @@ class Sales extends MY_Controller
 			$updated_count 			= $sales->updated_count + 1;
 			$data = array(
 				'date' 					=> $date,
+                'delivery_date'         => $delivery_date,
+                'wedding_date'          => $wedding_date,
                 'reference_no' 			=> $reference,
                 'customer_id' 			=> $customer_id,
                 'customer' 				=> $customer,

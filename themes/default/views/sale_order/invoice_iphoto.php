@@ -1,4 +1,4 @@
-<?php //$this->erp->print_arrays($biller) ?>
+<?php //$this->erp->print_arrays($invs) ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -192,6 +192,22 @@
                                                 <td style="width: 30%;"><?= $customer->company ?></td>
                                             </tr>
                                         <?php } ?>
+                                        <?php if($invs->delivery_date) { ?>
+                                            <tr>
+                                                <td style="width: 30%;">Pre-Wedding Date </td>
+                                                <td>:</td>
+                                                <td><?= $this->erp->hrld($invs->delivery_date) ?></td>
+ 
+                                            </tr>
+                                        <?php } ?>
+                                        <?php if($invs->wedding_date) { ?>
+                                            <tr>
+                                                <td style="width: 30%;">Wedding Date </td>
+                                                <td>:</td>
+                                                <td><?= $this->erp->hrld($invs->wedding_date) ?></td>
+ 
+                                            </tr>
+                                        <?php } ?>
                                         <?php if(!empty( $customer->name)) { ?>
                                             <tr>
                                                 <td style="width: 30%;">អតិថិជន / Customer </td>
@@ -200,6 +216,7 @@
  
                                             </tr>
                                         <?php } ?>
+                                       
                                         <?php if(!empty($customer->address_kh || $customer->address)) { ?>
                                             <tr>
                                                 <td>អាសយដ្ឋាន / Address </td>

@@ -195,6 +195,22 @@
                                                 <td style="width: 30%;"><?= $customer->company ?></td>
                                             </tr>
                                         <?php } ?>
+                                        <?php if($invs->delivery_date) { ?>
+                                            <tr>
+                                                <td style="width: 30%;">Pre-Wedding Date </td>
+                                                <td>:</td>
+                                                <td><?= $this->erp->hrld($invs->delivery_date) ?></td>
+ 
+                                            </tr>
+                                        <?php } ?>
+                                        <?php if($invs->wedding_date) { ?>
+                                            <tr>
+                                                <td style="width: 30%;">Wedding Date </td>
+                                                <td>:</td>
+                                                <td><?= $this->erp->hrld($invs->wedding_date) ?></td>
+ 
+                                            </tr>
+                                        <?php } ?>
                                         <?php if(!empty($customer->name_kh || $customer->name)) { ?>
                                             <tr>
                                                 <td>អតិថិជន / Customer </td>
@@ -544,8 +560,16 @@
                     <tr>
                         <th colspan="7">
                              <div class="myhide">
-                                 <div class="co-sm-5" style="float:left;margin-right:10px;">
+                                <div class="co-sm-2" style="float:left;margin-right:10px;">
+                                    <center>
+                                        <b>Line</b>
+                                    </center>
                                     <img width='100px' height='105px'  src="<?= base_url('assets/uploads/qrcodes/line.png') ?>">
+                                </div>
+                                <div class="co-sm-2" style="float:left;margin-right:10px;">
+                                    <center>
+                                        <b>Wechat</b>
+                                    </center>
                                     <img width='100px' height='100px'  src="<?= base_url('assets/uploads/qrcodes/wechat.png') ?>">
                                 </div>
                                 <div style="margin-top: 15px;">

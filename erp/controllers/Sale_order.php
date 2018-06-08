@@ -140,8 +140,8 @@ class Sale_order extends MY_Controller
                 $date = date('Y-m-d H:i:s');
             }
             
-            $delivery_date = $this->erp->fld($this->input->post('delivery_date'));
-            $wedding_date = $this->erp->fld($this->input->post('wedding_date'));
+            $delivery_date = $this->input->post('delivery_date')? $this->erp->fld($this->input->post('delivery_date')):NULL;
+            $wedding_date = $this->input->post('wedding_date')?$this->erp->fld($this->input->post('wedding_date')):NULL;
             $warehouse_id = $this->input->post('warehouse');
             $customer_id = $this->input->post('customer');
 			$amout_paid = $this->input->post('amount-paid');
@@ -460,6 +460,7 @@ class Sale_order extends MY_Controller
 				'attachment1' => $photo1,
 				'attachment2' => $photo2
             );
+           // $this->erp->print_arrays($data);
         }
 		
 		
@@ -2384,8 +2385,8 @@ class Sale_order extends MY_Controller
             $unit_cost = "unit_cost";
             $tax_rate = "tax_rate";
             $reference = $this->input->post('reference_no');
-            $delivery_date = $this->erp->fld($this->input->post('delivery_date'));
-            $wedding_date = $this->erp->fld($this->input->post('wedding_date'));
+            $delivery_date = $this->input->post('delivery_date')? $this->erp->fld($this->input->post('delivery_date')):NULL;
+            $wedding_date = $this->input->post('wedding_date')?$this->erp->fld($this->input->post('wedding_date')):NULL;
             $warehouse_id = $this->input->post('warehouse');
             $customer_id = $this->input->post('customer');
 			$group_area = $this->input->post('area');

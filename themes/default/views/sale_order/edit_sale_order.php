@@ -10,8 +10,8 @@
     $(document).ready(function () {
         <?php if ($inv) { ?>
         __setItem('sldate', '<?= $this->erp->hrld($inv->date) ?>');
-        __setItem('sldelidate', '<?= $this->erp->hrsd($inv->delivery_date) ?>');
-        __setItem('sldweddate', '<?= $this->erp->hrsd($inv->wedding_date) ?>');
+        __setItem('sldelidate', '<?= $inv->delivery_date?$this->erp->hrsd($inv->delivery_date):"" ?>');
+        __setItem('sldweddate', '<?= $inv->wedding_date?$this->erp->hrsd($inv->wedding_date):"" ?>');
         __setItem('slcustomer', '<?= $inv->customer_id ?>');
         __setItem('slbiller', '<?= $inv->biller_id ?>');
         __setItem('slref', '<?= $inv->reference_no ?>');        
