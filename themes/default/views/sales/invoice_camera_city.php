@@ -193,22 +193,6 @@
                                                 <td style="width: 30%;"><?= $customer->company ?></td>
                                             </tr>
                                         <?php } ?>
-                                        <?php if($invs->delivery_date) { ?>
-                                            <tr>
-                                                <td style="width: 30%;">Pre-Wedding Date </td>
-                                                <td>:</td>
-                                                <td><?= $this->erp->hrld($invs->delivery_date) ?></td>
- 
-                                            </tr>
-                                        <?php } ?>
-                                        <?php if($invs->wedding_date) { ?>
-                                            <tr>
-                                                <td style="width: 30%;">Wedding Date </td>
-                                                <td>:</td>
-                                                <td><?= $this->erp->hrld($invs->wedding_date) ?></td>
- 
-                                            </tr>
-                                        <?php } ?>
                                         <?php if(!empty($customer->name_kh || $customer->name)) { ?>
                                             <tr>
                                                 <td>អតិថិជន / Customer </td>
