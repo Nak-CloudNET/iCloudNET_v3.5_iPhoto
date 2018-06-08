@@ -455,6 +455,12 @@
                                 <span class="hidden-sm hidden-xs"><?= lang('invoice_camera_city') ?></span>
                             </a>
                         </div>
+                        <div class="btn-group">
+                            <a href="<?= site_url('sales/view_pos_receipt/' . $inv->id) ?>" target="_blank" class="tip btn btn-primary" title="<?= lang('st_invoice') ?>">
+                                <i class="fa fa-print"></i>
+                                <span class="hidden-sm hidden-xs"><?= lang('receipt') ?></span>
+                            </a>
+                        </div>
 						
 						<div class="btn-group">
                             <a href="<?= site_url('sales/tax_invoice/' . $inv->id) ?>" target="_blank" class="tip btn btn-primary" title="<?= lang('tax_invoice') ?>">
