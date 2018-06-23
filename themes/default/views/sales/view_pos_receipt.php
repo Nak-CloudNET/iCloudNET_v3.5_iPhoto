@@ -318,373 +318,48 @@ if ($modal) {
             </tr>
         </table>
         <table class="received" style="width:100%;margin-top: 5px;">
-            <?php
-            $pos_paid = 0;
-            $pos_paidd = 0;
-            $colspan = 0;
-            if ($payments) {
-                foreach ($payments as $payment) {
-                    $pos_paid = $payment->pos_paid;
-                    if ($pos_settings->in_out_rate) {
-                        $pos_paid_other = ($payment->pos_paid_other != null ? $payment->pos_paid_other / $outexchange_rate->rate : 0);
-                    } else {
-                        $pos_paid_other = ($payment->pos_paid_other != null ? $payment->pos_paid_other / $exchange_rate->rate : 0);
-                    }
-                }
-                $pos_paidd = $pos_paid + $pos_paid_other;
-            }
-
-
-            if ($pos_paidd >= $inv->grand_total) {
-
-                if (count($payments) > 1) {
-                    ?>
-                    <tr style="width: 100%;">
-                        <th colspan="<?= $colspan + 2 ?>">
-                            <?php
-                            foreach ($payments as $payment) {
-                                ?>
-                                <table style="width: 100%;">
-                                    <caption style="float: left; padding-left: 13px;">
-                                        <?php if ($payment->paid_by == 'Cheque') {
-                                            echo lang('paid_by') . ' ' . lang($payment->paid_by) . ' ' . lang('(' . $payment->cheque_no . ')');
-                                        } elseif ($payment->paid_by == 'CC') {
-                                            echo lang('paid_by') . ' ' . lang($payment->paid_by) . ' ' . lang('(' . $payment->cc_no . ')');
-                                        } else {
-                                            echo lang('paid_by') . ' ' . lang($payment->paid_by);
-                                        } ?>
-                                    </caption>
-                                    <tr>
-                                        <th style="border-left:2px solid #000;border-top:2px solid #000;border-right:none;padding-right: 12px;width:64%;"
-                                            class="text-right received_amount">Received (USD) :
-                                        </th>
-                                        <th style="border-right:2px solid #000;border-top:2px solid #000;border-left:none;"
-                                            class="text-right"><?= $this->erp->formatMoney($payment->pos_paid); ?></th>
-                                    </tr>
-                                    <?php
-                                    if ($payment->pos_paid_other == 0) {
-                                        ?>
-                                        <tr>
-                                            <th style="border-left:2px solid #000;border-bottom:2px solid #000;padding-right: 12px;width:64%;"
-                                                class="text-right received_amount">Received (Riel) :
-                                            </th>
-                                            <th style="border-bottom:2px solid #000;border-right:2px solid #000;border-left:none;"
-                                                class="text-right"><?= number_format($payment->pos_paid_other) . ' ៛'; ?></th>
-                                        </tr>
-                                        <?php
-                                    }
-                                    ?>
-                                </table>
-
-                                <?php
-                            }
-                            ?>
-                        </th>
-                    </tr>
-                    <?php
-                } else {
-
-
-                    if ($inv->other_cur_paid) {
-                        $khr_paid = ($inv->other_cur_paid / $inv->other_cur_paid_rate);
-                    } else {
-                        $khr_paid = 0;
-                    }
-                    ?>
-                    <tr>
-                        <th style="border-left:2px solid #000;border-top:2px solid #000;border-right:none;width:64%;"
-                            class="text-right received_amount">Received (<?= $default_currency->code; ?>) :
-                        </th>
-                        <th style="border-right:2px solid #000;border-top:2px solid #000;border-left:none;"
-                            class="text-right"><?= $this->erp->formatMoney($payment->pos_paid); ?></th>
-                    </tr>
-                    <tr>
-                        <th style="border-left:2px solid #000;border-bottom:2px solid #000;border-right:none;width:64%;"
-                            class="text-right received_amount">Received (Riel) :
-                        </th>
-                        <th style="border-bottom:2px solid #000;border-right:2px solid #000;border-left:none;"
-                            class="text-right"><?= number_format($payment->pos_paid_other) . ' ៛'; ?></th>
-                    </tr>
-
-                    <?php
-                }
-                if (count($payments) > 1) {
-
-                    $pay = '';
-                    $pay_kh = '';
-                    foreach ($payments as $payment) {
-
-                        $pay += $payment->pos_paid;
-                        $pay_kh += $payment->pos_paid_other;
-                    }
-
-                    if ((($pay + ($pay_kh / (($pos_settings->in_out_rate) ? $outexchange_rate->rate : $exchange_rate->rate))) - $inv->grand_total) != 0) {
-
-                        ?>
-
-                        <tr>
-                            <th style="border-top:2px dotted #000;padding-right: 12px;"
-                                class="text-right"><?= lang("change_amount_us"); ?>:
-                            </th>
-                            <th style="border-top:2px dotted #000" class="text-right">
-                                <?php
-                                echo $this->erp->formatMoney(($pay + $pay_kh) - $inv->grand_total);
-                                $total_us_b = $this->erp->formatMoney(($pay + $pay_kh) - $inv->grand_total);
-                                $m_us = $this->erp->fraction($total_us_b);
-                                ?>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th style="border-top:2px dotted #000;padding-right: 12px;" colspan="<?= $colspan ?>"
-                                class="text-right"><?= lang("change_amount_kh"); ?></th>
-                            <th style="border-top:2px dotted #000"
-                                class="text-right"><?= number_format(round($payment->pos_balance * $payment->pos_paid_other_rate)); ?>
-                                <sup> ៛</sup></th>
-                        </tr>
-                        <?php
-                    }
-                } else {
-                    if ((($pos_paid + $pos_paid_other) - $inv->grand_total) != 0 || ($this->erp->formatMoney((($pos_paid + $amount_kh_to_us) - $inv->grand_total) * $exchange_rate->rate)) != 0) { ?>
-                        <tr>
-                            <th style="border-top:2px dotted #000" class="text-right"><?= lang("change_amount_us"); ?>
-                                :
-                            </th>
-                            <th style="border-top:2px dotted #000" class="text-right">
-                                <?php
-                                echo $this->erp->formatMoney($payment->pos_balance);
-                                $total_us_b = $this->erp->formatMoney(($pos_paid + $amount_kh_to_us) - $inv->grand_total);
-                                $m_us = $this->erp->fraction($total_us_b);
-                                ?>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th style="border-top:2px dotted #000" class="text-right"><?= lang("change_amount_kh"); ?>
-                                :
-                            </th>
-                            <th style="border-top:2px dotted #000" class="text-right">
-                                <?= number_format(round($payment->pos_balance * $payment->pos_paid_other_rate)); ?>
-                                <sup> ៛</sup>
-
-                            </th>
-                        </tr>
-
-                        <?php
-
-                    }
-                }
-            }
-            if ($pos_paidd < $inv->grand_total) {
-                if(count($payments) > 1){
-                    ?>
-                    <tr>
-                        <th colspan="<?= $colspan + 2 ?>">
-                            <?php
-
-                            foreach($payments as $payment) {
-								
-                                if($payment->pos_paid>0){
-
-                                    ?>
-
-                                    <table style="width:100%;">
-                                        <caption style="float: left; padding-left: 13px;">
-                                            <?php if ($payment->paid_by=='Cheque'){
-                                                echo lang('paid_by').' '.lang($payment->paid_by).' '.lang('('.$payment->cheque_no.')');
-                                            }elseif ($payment->paid_by=='CC'){
-                                                echo lang('paid_by').' '.lang($payment->paid_by).' '.lang('('.$payment->cc_no.')');
-                                            }else{
-                                                echo lang('paid_by').' '.lang($payment->paid_by);
-                                            }?>
-                                        </caption>
-                                        <tr>
-                                            <th style="border:2px solid #000;border-right:none;padding-right: 92px;width:81%;"
-                                                colspan="<?= $colspan ?>" class="text-right received_amount">Received
-                                                (<?= $default_currency->code; ?>):
-                                            </th>
-                                            <th style="border:2px solid #000;border-left:none;" class="text-right"><?= $this->erp->formatMoney($payment->pos_paid); ?></th>
-                                        </tr>
-                                        <?php
-                                        if($inv->other_cur_paid){
-
-                                            ?>
-                                            <tr>
-                                                <th style="border:2px solid #000;border-right:none;padding-right: 92px;width:81%;"
-                                                    colspan="<?= $colspan ?>" class="text-right received_amount">
-                                                    Received (Riel):
-                                                </th>
-                                                <th style="border:2px solid #000;border-left:none;" class="text-right"><?= number_format($payment->pos_paid_other) . ' ៛' ; ?></th>
-                                            </tr>
-                                            <?php
-
-                                        }else{}
-                                        ?>
-                                    </table>
-                                    <?php
-                                }
-
-                            }
-                            ?>
-                        </th>
-                    </tr>
-                    <?php
-                }else{
-                    ?>
-						<tr>
-							<th style="border:2px solid #000;border-right:none;width: 64%" colspan="<?= $colspan ?>"
-								class="text-right received_amount">Received (<?= $default_currency->code; ?>):
-							</th>
-							<th style="border:2px solid #000;border-left:none;" class="text-right"><?= $this->erp->formatMoney($payment->pos_paid); ?></th>
-						</tr>
-						<tr>
-                            <th style="border:2px solid #000;border-right:none;padding-right: 0px;"
-                                colspan="<?= $colspan ?>" class="text-right received_amount">Received (Riel):
-                            </th>
-                            <th style="border:2px solid #000;border-left:none;" class="text-right"><?= number_format($payment->pos_paid_other) . ' ៛' ; ?></th>
-                        </tr>
-                    <?php
-                }
-
-                if(count($payments) > 1){
-                    $pay = '';
-                    $pay_kh = '';
-                    foreach ($payments as $payment) {
-
-                        $pay += $payment->pos_paid;
-                        $pay_kh += $payment->pos_paid_other;
-                    }
-
-                    if ((($pay + ($pay_kh / (($pos_settings->in_out_rate) ? $outexchange_rate->rate : $exchange_rate->rate))) - $inv->grand_total) != 0) {
-                        ?>
-                        <tr>
-                            <th style="border-top:2px dotted #000;padding-right: 0px;" colspan="<?= $colspan ?>"
-                                class="text-right"><?= lang("remaining_us"); ?></th>
-                            <th style="border-top:2px dotted #000" class="text-right">
-                                <?php
-                                $money_kh = $pay_kh / (($pos_settings->in_out_rate) ? $outexchange_rate->rate : $exchange_rate->rate);
-                                echo $this->erp->formatMoney(abs(($pay + $money_kh) - $inv->grand_total));
-                                $total_us_b = $this->erp->formatMoney(($pay + $money_kh) - $inv->grand_total);
-                                $m_us = $this->erp->fraction($total_us_b);
-
-                                ?>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th style="border-top:2px dotted #000;padding-right: 0px;" colspan="<?= $colspan ?>"
-                                class="text-right"><?= lang("remaining_kh"); ?></th>
-                            <th style="border-top:2px dotted #000"
-                                class="text-right"><?= number_format(abs((($pay + $money_kh) - $inv->grand_total) * (($pos_settings->in_out_rate) ? $outexchange_rate->rate : $exchange_rate->rate))) . ' ៛'; ?></th>
-                        </tr>
-                        <?php
-                    }
-                } else {
-                    $pay = '';
-                    $pay_kh = '';
-                    $balance = '';
-                    $pos_paid_other_balance = '';
-                    $balance_amount = '';
-                    foreach($payments as $payment) {
-                        $pay += $payment->pos_paid;
-                        $pay_kh += $payment->pos_paid_other;
-                        $balance += $payment->pos_balance;
-                        $pos_paid_other_balance += ($payment->pos_paid_other / $payment->pos_paid_other_rate) + $payment->pos_paid;
-                        $balance_amount += $pos_paid_other_balance - $payment->amount;
-                    }
-
-                    if ($balance_amount == $balance) { ?>
-                        <tr>
-                            <th style="border-top:2px dotted #000;width: 64%" colspan="<?= $colspan ?>"
-                                class="text-right"><?= lang("change_amount_us"); ?> :
-                            </th>
-                            <th style="border-top:2px dotted #000" class="text-right">
-                                <?php
-                                echo $this->erp->formatMoney(abs($inv->pos_balance));
-                                $total_us_b = $this->erp->formatMoney($inv->grand_total - ($pos_paid + $amount_kh_to_us));
-                                $m_us = $this->erp->fraction($total_us_b);
-                                ?>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th style="border-top:2px dotted #000;width: 64%" colspan="<?= $colspan ?>"
-                                class="text-right"><?= lang("change_amount_kh"); ?> :
-                            </th>
-                            <th style="border-top:2px dotted #000"
-                                class="text-right"><?= number_format(abs($inv->pos_balance * $inv->pos_paid_other_rate)) . ' ៛'; ?></th>
-                        </tr>
-                        <?php
-                    } elseif (($inv->grand_total - ($pay + $pay_kh)) < 0) { ?>
-                        <tr>
-                            <th style="border-top:2px dotted #000;width: 64%" colspan="<?= $colspan ?>"
-                                class="text-right"><?= lang("remaining_us"); ?> :
-                            </th>
-                            <th style="border-top:2px dotted #000" class="text-right">
-                                <?php
-                                echo $this->erp->formatMoney(abs($inv->pos_balance));
-                                $total_us_b = $this->erp->formatMoney($inv->grand_total - ($pos_paid + $amount_kh_to_us));
-                                $m_us = $this->erp->fraction($total_us_b);
-                                ?>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th style="border-top:2px dotted #000;width: 64%" colspan="<?= $colspan ?>"
-                                class="text-right"><?= lang("remaining_kh"); ?> :
-                            </th>
-                            <th style="border-top:2px dotted #000"
-                                class="text-right"><?= number_format(abs($inv->pos_balance * $inv->pos_paid_other_rate)) . ' ៛'; ?></th>
-                        </tr>
-                        <?php
-                    } elseif (($inv->grand_total - ($pos_paid + $pos_paid_other)) > 0 || ($this->erp->formatMoney((($pos_paid + $amount_kh_to_us) - $inv->grand_total) * (($pos_settings->in_out_rate) ? $outexchange_rate->rate : $exchange_rate->rate)))) { ?>
-                        <tr>
-                            <th style="border-top:2px dotted #000;width: 64%" colspan="<?= $colspan ?>"
-                                class="text-right"><?= lang("remaining_us"); ?> :
-                            </th>
-                            <th style="border-top:2px dotted #000" class="text-right">
-                                <?php
-                                echo $this->erp->formatMoney(abs($inv->pos_balance));
-                                $total_us_b = $this->erp->formatMoney($inv->grand_total - ($pos_paid + $amount_kh_to_us));
-                                $m_us = $this->erp->fraction($total_us_b);
-                                ?>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th style="border-top:2px dotted #000;width: 64%" colspan="<?= $colspan ?>"
-                                class="text-right"><?= lang("remaining_kh"); ?> :
-                            </th>
-                            <th style="border-top:2px dotted #000"
-                                class="text-right"><?= number_format(abs($inv->pos_balance * $inv->pos_paid_other_rate)) . ' ៛'; ?></th>
-                        </tr>
-                        <?php
-                    }
-                    //$this->erp->print_arrays(($inv->grand_total-($pay+$pay_kh)));
-                    /*if(($inv->grand_total-($pos_paid+$pos_paid_other)) > 0  || ($this->erp->formatMoney((($pos_paid+$amount_kh_to_us) - $inv->grand_total)*(($pos_settings->in_out_rate) ? $outexchange_rate->rate:$exchange_rate->rate)))){ ?>
-                    <?php if(abs($inv->pos_balance) > 0) { ?>
-
-                        <tr>
-                            <th style="border-top:2px dotted #000;width: 64%" colspan="<?= $colspan ?>"
-                                class="text-right"><?= lang("remaining_us"); ?> :
-                            </th>
-                            <th style="border-top:2px dotted #000" class="text-right">
-                                <?php
-                                echo $this->erp->formatMoney(abs($inv->pos_balance));
-                                $total_us_b = $this->erp->formatMoney($inv->grand_total-($pos_paid+$amount_kh_to_us));
-                                $m_us = $this->erp->fraction($total_us_b);
-                                ?>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th style="border-top:2px dotted #000;width: 64%" colspan="<?= $colspan ?>"
-                                class="text-right"><?= lang("remaining_kh"); ?> :
-                            </th>
-                            <th style="border-top:2px dotted #000"
-                                class="text-right"><?= number_format(abs($inv->pos_balance * $inv->pos_paid_other_rate)) . ' ៛'; ?></th>
-                        </tr>
-                    <?php }
-                    }*/
-                }
-
-            }
-
-            ?>
-
+            <tr>
+                <th style="border:2px solid #000;border-right:none;width: 64%" colspan="<?= $colspan ?>"
+                    class="text-right received_amount">Received (<?= $default_currency->code; ?>):
+                </th>
+                <th style="border:2px solid #000;border-left:none;" class="text-right"><?= $this->erp->formatMoney($inv->paid); ?></th>
+            </tr>
+            <tr>
+                <th style="border:2px solid #000;border-right:none;padding-right: 0px;"
+                    colspan="<?= $colspan ?>" class="text-right received_amount">Received (Riel):
+                </th>
+                <th style="border:2px solid #000;border-left:none;" class="text-right"><?= number_format($payment->pos_paid_other) . ' ៛' ; ?></th>
+            </tr>
+            <?php if($inv->paid<$inv->grand_total){ ?>
+            <tr>
+                <th style="border-top:2px dotted #000;padding-right: 0px;" colspan="<?= $colspan ?>"
+                    class="text-right"><?= lang("remaining_us"); ?></th>
+                <th style="border-top:2px dotted #000"
+                    class="text-right"><?= $this->erp->formatMoney($inv->grand_total-$inv->paid) ?></th>
+            </tr>
+            <tr>
+                <th style="border-top:2px dotted #000;padding-right: 0px;" colspan="<?= $colspan ?>"
+                    class="text-right"><?= lang("remaining_kh"); ?></th>
+                <th style="border-top:2px dotted #000"
+                    class="text-right"><?= number_format(($inv->grand_total-$inv->paid)*$exchange_rate->rate) .'៛' ?></th>
+            </tr>
+            <?php } ?>
+            <?php if($inv->paid > $inv->grand_total){ ?>
+            <tr>
+                <th style="border-top:2px dotted #000;width: 64%" colspan="<?= $colspan ?>"
+                    class="text-right"><?= lang("change_amount_us"); ?> :
+                </th>
+                <th style="border-top:2px dotted #000" class="text-right">
+                </th>
+            </tr>
+            <tr>
+                <th style="border-top:2px dotted #000;width: 64%" colspan="<?= $colspan ?>"
+                    class="text-right"><?= lang("change_amount_kh"); ?> :
+                </th>
+                <th style="border-top:2px dotted #000"
+                    class="text-right"><?= number_format(abs($inv->pos_balance * $inv->pos_paid_other_rate)) . ' ៛'; ?></th>
+            </tr>
+            <?php } ?>
         </table>
 
 

@@ -290,7 +290,7 @@
 							$g_total_shipping = 0;
 							$g_total_tax =0;
 							$grand_totals = 0;
-							if(count($sales) > 0){
+							if(0){
 								foreach($sales as $key => $sale){
 								//$this->erp->print_arrays( $sale);
 								$table_return_items = "erp_return_items"; 
