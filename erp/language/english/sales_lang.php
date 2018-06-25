@@ -456,3 +456,4 @@ $lang['wedding_date'] 						= "Wedding Date";
 $lang['attendant'] 							= "Attendant";
 $lang['remaining_us']						= "Remaining (USD)";
 $lang['remaining_kh']						= "Remaining (Riel)";
+$lang['attr_to']						    = "Attr To";

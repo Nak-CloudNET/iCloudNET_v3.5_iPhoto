@@ -714,8 +714,8 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <?= lang("attendant", "attendant"); ?>
-                                            <?php echo form_input('attendant','', 'class="form-control input-tip" id="attendant" '); ?>
+                                            <?= lang("attr_to", "attr_to"); ?>
+                                            <?php echo form_input('attendant',$quotes->attant_to?$quotes->attant_to:'', 'class="form-control input-tip" id="attendant" '); ?>
                                         </div>
                                     </div>
                                 </div>

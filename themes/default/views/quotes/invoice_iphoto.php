@@ -262,7 +262,7 @@
                             </div>
                         </th>
                     </tr>
-                    <tr class="border thead print" style="background-color: #F96141 !important; color: #FFF !important;">
+                    <tr class="border thead print" style="background-color: rgb(1,1,1) !important; color: #FFF !important;">
                         <th >ល.រ<br /><?= strtoupper(lang('no')) ?></th>
                         <th >បរិយាយមុខទំនិញ<br /><?= strtoupper(lang('description')) ?></th>
                         <th >ការបញ្ជាក់<br /><?= strtoupper(lang('specification')) ?></th>
