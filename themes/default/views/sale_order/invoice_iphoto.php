@@ -1,4 +1,4 @@
-<?php //$this->erp->print_arrays($invs) ?>
+<?php //$this->erp->print_arrays($deposit) ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -256,7 +256,13 @@
                                             <td>:</td>
                                             <td><?= $this->erp->hrld($invs->date); ?></td>
                                         </tr>
-
+                                        <?php if ($deposit) { ?>
+                                        <tr>
+                                            <td>ប្រាក់កក់ / Deposit </td>
+                                            <td>:</td>
+                                            <td><?= '<small style="font-size:10px;">('. $this->erp->formatDecimal(($deposit->deposit/$deposit->grand_total)*100,2) .'%)</small>'?> <?= $this->erp->formatMoney($deposit->deposit);?></td>
+                                        </tr>
+                                        <?php }?>
                                         <?php if ($invs->payment_term) { ?>
                                             <tr>
                                                 <td>រយៈពេលបង់ប្រាក់ </td>

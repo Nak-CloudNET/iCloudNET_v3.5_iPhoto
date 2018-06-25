@@ -804,6 +804,7 @@ class Sale_order extends MY_Controller
         $this->data['warehouse'] = $this->site->getWarehouseByID($inv->warehouse_id);
         $this->data['invs'] = $inv;
         $return = $this->sales_model->getReturnBySID($id);
+        $this->data['deposit'] = $this->sales_model->getDepositByID($id);
         $this->data['return_sale'] = $return;
         $this->data['rows'] = $this->sale_order_model->getAllInvoiceItemsById($id);
         $this->data['logo'] = true;
