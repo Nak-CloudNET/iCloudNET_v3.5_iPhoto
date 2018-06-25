@@ -269,8 +269,8 @@
                     
                     <tr class="border thead print" style="background-color: #F96141 !important; color: #FFF !important;">
                         <th>ល.រ<br /><?= strtoupper(lang('no')) ?></th>
+                        <th>លេខកូដ<br /><?= strtoupper(lang('product_code')) ?></th>
                         <th>បរិយាយមុខទំនិញ<br /><?= strtoupper(lang('description')) ?></th>
-                        <th>ការបញ្ជាក់<br /><?= strtoupper(lang('specification')) ?></th>
                         <th>តម្លៃ<br /><?= strtoupper(lang('price')) ?></th>
 
                         <?php if ($Settings->product_discount) { ?>
@@ -313,13 +313,10 @@
                     <tr class="border">
                         <td style="vertical-align: middle; text-align: center"><?php echo $no ?></td>
                         <td style="vertical-align: middle;">
-                            <?=$row->product_name;?>
+                            <?=$row->product_code;?>
                         </td>
                         <td style="vertical-align: middle;">
-                            <?=$row->product_noted;?>
-                            <?php if(!empty($rows)) { ?>
-                                <b>ទីតាំង</b> <?= $rows[0]->location ?>
-                            <?php } ?>
+                            <?=$row->product_name;?>
                         </td>
                         <td style="vertical-align: middle; text-align: right">
                             <?php
