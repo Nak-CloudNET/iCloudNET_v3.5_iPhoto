@@ -30,7 +30,7 @@
         .print th{
             color:white !important;
             font-weight: bold;
-            background: #F96141 !important;
+            background: rgb(78,41,5) !important;
 
         }
         .pageBreak {
@@ -262,7 +262,7 @@
                             </div>
                         </th>
                     </tr>
-                    <tr class="border thead print" style="background-color: rgb(1,1,1) !important; color: #FFF !important;">
+                    <tr class="border thead print" style="background-color: rgb(78,41,5) !important; color: #FFF !important;">
                         <th >ល.រ<br /><?= strtoupper(lang('no')) ?></th>
                         <th >បរិយាយមុខទំនិញ<br /><?= strtoupper(lang('description')) ?></th>
                         <th >ការបញ្ជាក់<br /><?= strtoupper(lang('specification')) ?></th>
