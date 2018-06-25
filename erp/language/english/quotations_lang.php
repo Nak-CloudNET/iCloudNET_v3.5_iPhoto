@@ -75,3 +75,4 @@ $lang['approve'] 							= "Approved";
 $lang['quote_discount'] 					= "Discount (%)";
 $lang['contact'] 							= "Contact";
 $lang['camera_city'] 						= "Camera City";
+$lang['attr_to'] 						    = "Attr To";

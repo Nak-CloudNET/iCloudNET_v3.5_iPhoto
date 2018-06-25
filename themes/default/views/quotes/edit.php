@@ -338,7 +338,12 @@
                                             ?>
                                         </div>
                                     </div>
-									
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <?= lang("attr_to", "attr_to"); ?>
+                                            <?php echo form_input('attr_to', $inv->attant_to?$inv->attant_to:'', 'class="form-control input-tip datetime" id="attr_to" required="required"'); ?>
+                                        </div>
+                                    </div>
 									<div class="col-md-4">
 										<div class="form-group dp" style="display: none;">
 											<?= lang("deposit_amount", "deposit_amount"); ?>

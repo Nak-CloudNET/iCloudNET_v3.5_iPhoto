@@ -118,6 +118,7 @@ $(document).ready(function () {
         $('#quwarehouse').select2("val", quwarehouse);
     }
 
+
     $('#qunote').redactor('destroy');
     $('#qunote').redactor({
         buttons: ['formatting', '|', 'alignleft', 'aligncenter', 'alignright', 'justify', '|', 'bold', 'italic', 'underline', '|', 'unorderedlist', 'orderedlist', '|', 'link', '|', 'html'],

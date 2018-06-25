@@ -59,6 +59,9 @@
             if (__getItem('qudate')) {
                 __removeItem('qudate');
             }
+            if (__getItem('attr_to')) {
+                __removeItem('attr_to');
+            }
             <?=$this->session->set_userdata('remove_q2', '0');?>
         }
 
@@ -88,6 +91,12 @@
         $(document).on('change', '#qudate', function (e) {
             __setItem('qudate', $(this).val());
         });
+        $(document).on('change', '#attr_to', function (e) {
+            __setItem('attr_to', $(this).val());
+        });
+        if (attr_to = __getItem('attr_to')) {
+            $('#attr_to').val(attr_to);
+        }
         if (qudate = __getItem('qudate')) {
             $('#qudate').val(qudate);
         }
@@ -503,7 +512,12 @@
                                         <?php } ?>
                                         </div>
                                     </div>
-
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <?= lang("attr_to", "attr_to"); ?>
+                                            <?php echo form_input('attr_to', '', 'class="form-control input-tip datetime" id="attr_to" required="required"'); ?>
+                                        </div>
+                                    </div>
 
                                     <div class="col-md-4">
                                         <!--

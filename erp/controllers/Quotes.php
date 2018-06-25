@@ -581,6 +581,7 @@ class Quotes extends MY_Controller
             $warehouse_id = $this->input->post('warehouse');
             $customer_id = $this->input->post('customer_1');
             $status = $this->input->post('status');
+            $attr_to= $this->input->post('attr_to');
             $shipping = $this->input->post('shipping') ? $this->input->post('shipping') : 0;
             $customer_details = $this->site->getCompanyByID($customer_id);
             $customer = $customer_details->name ? $customer_details->name : $customer_details->company;
@@ -769,7 +770,8 @@ class Quotes extends MY_Controller
                 'status' => $this->Settings->authorization=='auto'?'approved':'pending',
                 'created_by' => $this->session->userdata('user_id'),
 				'saleman' => $saleman,
-                'issue_invoice' => 'pending'
+                'issue_invoice' => 'pending',
+                'attant_to'=>$attr_to
             );
 			
             if ($_FILES['document']['size'] > 0) {
@@ -1221,6 +1223,7 @@ class Quotes extends MY_Controller
             $customer_id = $this->input->post('customer');
             $biller_id = $this->input->post('biller');
             $status = $this->input->post('status');
+            $attr_to = $this->input->post('attr_to');
             $shipping = $this->input->post('shipping') ? $this->input->post('shipping') : 0;
             $customer_details = $this->site->getCompanyByID($customer_id);
             $customer = $customer_details->name ? $customer_details->name : $customer_details->company;
@@ -1408,6 +1411,7 @@ class Quotes extends MY_Controller
                 'status' => 'pending',
                 'updated_by' => $this->session->userdata('user_id'),
                 'updated_at' => date('Y-m-d H:i:s'),
+                'attant_to'=>$attr_to,
             );
 			
             if ($_FILES['document']['size'] > 0) {
