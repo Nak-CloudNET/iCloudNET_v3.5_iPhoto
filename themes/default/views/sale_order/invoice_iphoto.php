@@ -183,29 +183,17 @@
                             <div class="row" style="text-align: left;">
                                 <div class="col-sm-7 col-xs-7">
                                     <table >
+                                        <tr>
+                                            <td>កាលបរិច្ឆេទ / Date</td>
+                                            <td>:</td>
+                                            <td><?= $this->erp->hrld($invs->date); ?></td>
+                                        </tr>
                                         <?php
-
                                         if(!empty($customer->company)) { ?>
                                             <tr>
                                                 <td style="width: 40%;">ក្រុមហ៊ុន​​​​​​ / Company</td>
                                                 <td style="width: 5%;">:</td>
                                                 <td style="width: 30%;"><?= $customer->company ?></td>
-                                            </tr>
-                                        <?php } ?>
-                                        <?php if($invs->delivery_date) { ?>
-                                            <tr>
-                                                <td style="width: 30%;">Pre-Wedding Date </td>
-                                                <td>:</td>
-                                                <td><?= $this->erp->hrld($invs->delivery_date) ?></td>
- 
-                                            </tr>
-                                        <?php } ?>
-                                        <?php if($invs->wedding_date) { ?>
-                                            <tr>
-                                                <td style="width: 30%;">Wedding Date </td>
-                                                <td>:</td>
-                                                <td><?= $this->erp->hrld($invs->wedding_date) ?></td>
- 
                                             </tr>
                                         <?php } ?>
                                         <?php if(!empty( $customer->name)) { ?>
@@ -235,6 +223,13 @@
                                                 <td><?= $customer->phone ?></td>
                                             </tr>
                                         <?php } ?>
+                                        <?php if(!empty($customer->email)) { ?>
+                                            <tr>
+                                                <td>អ៊ីម៉េល (Email)</td>
+                                                <td>:</td>
+                                                <td><?= $customer->email ?></td>
+                                            </tr>
+                                        <?php } ?>
                                         <?php if(!empty($customer->vat_no)) { ?>
                                             <tr>
                                                 <td style="width: 20% !important">លេខអត្តសញ្ញាណកម្ម អតប </td>
@@ -251,18 +246,6 @@
                                             <td style="width: 5%;">:</td>
                                             <td style="width: 50%;"><?= $invs->reference_no ?></td>
                                         </tr>
-                                        <tr>
-                                            <td>កាលបរិច្ឆេទ / Date</td>
-                                            <td>:</td>
-                                            <td><?= $this->erp->hrld($invs->date); ?></td>
-                                        </tr>
-                                        <?php if ($deposit) { ?>
-                                        <tr>
-                                            <td>ប្រាក់កក់ / Deposit </td>
-                                            <td>:</td>
-                                            <td><?= '<small style="font-size:10px;">('. $this->erp->formatDecimal(($deposit->deposit/$deposit->grand_total)*100,2) .'%)</small>'?> <?= $this->erp->formatMoney($deposit->deposit);?></td>
-                                        </tr>
-                                        <?php }?>
                                         <?php if ($invs->payment_term) { ?>
                                             <tr>
                                                 <td>រយៈពេលបង់ប្រាក់ </td>
@@ -287,6 +270,22 @@
                                                 <td>កូនស្រី/ Bride</td>
                                                 <td>:</td>
                                                 <td><?= $customer->bride_name ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                        <?php if($invs->delivery_date) { ?>
+                                            <tr>
+                                                <td style="width: 30%;">Pre-Wedding Date </td>
+                                                <td>:</td>
+                                                <td><?= $this->erp->hrld($invs->delivery_date) ?></td>
+
+                                            </tr>
+                                        <?php } ?>
+                                        <?php if($invs->wedding_date) { ?>
+                                            <tr>
+                                                <td style="width: 30%;">Wedding Date </td>
+                                                <td>:</td>
+                                                <td><?= $this->erp->hrld($invs->wedding_date) ?></td>
+
                                             </tr>
                                         <?php } ?>
                                     </table>
@@ -523,7 +522,7 @@
                             <td colspan="<?= $col; ?>" style="text-align: right; font-weight: bold;">បានបង់ / <?= strtoupper(lang('paid')) ?>
                                 (<?= $default_currency->code; ?>)
                             </td>
-                            <td align="right"><?php echo $this->erp->formatMoney($invs->paid-$invs->deposit); ?></td>
+                            <td align="right"><?='<small style="font-size:10px;">('. $this->erp->formatDecimal(($deposit->deposit/$deposit->grand_total)*100,2) .'%)</small>'.$this->erp->formatMoney($invs->paid-$invs->deposit); ?></td>
                         </tr>
                     <?php } ?>
                     <tr class="border-foot">

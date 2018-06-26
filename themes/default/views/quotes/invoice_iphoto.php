@@ -1,4 +1,4 @@
-<?php //$this->erp->print_arrays($billers) ?>
+<?php //$this->erp->print_arrays($customer) ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -183,11 +183,25 @@
                             <div class="row" style="text-align: left;">
                                 <div class="col-sm-7 col-xs-7">
                                     <table >
+                                        <tr>
+                                            <td>កាលបរិច្ឆេទ / Date</td>
+                                            <td>:</td>
+                                            <td><?= $this->erp->hrld($invs->date); ?></td>
+                                        </tr>
+                                        <?php
+
+                                        if(!empty($customer->company)) { ?>
+                                            <tr>
+                                                <td style="width: 15%;">ក្រុមហ៊ុន / Company</td>
+                                                <td style="width: 5%;">:</td>
+                                                <td style="width: 30%;"><?= $customer->company ?></td>
+                                            </tr>
+                                        <?php } ?>
                                         <?php
 
                                         if(!empty($invs->customer)) { ?>
                                             <tr>
-                                                <td style="width: 40%;">អតិថិជន / Customer</td>
+                                                <td style="width: 15%;">អតិថិជន / Customer</td>
                                                 <td style="width: 5%;">:</td>
                                                 <td style="width: 30%;"><?= $invs->customer ?></td>
                                             </tr>
@@ -210,6 +224,13 @@
                                                 <td><?= $customer->phone ?></td>
                                             </tr>
                                         <?php } ?>
+                                        <?php if(!empty($customer->email)) { ?>
+                                            <tr>
+                                                <td>អ៊ីម៉េល (Email)</td>
+                                                <td>:</td>
+                                                <td><?= $customer->email ?></td>
+                                            </tr>
+                                        <?php } ?>
                                         <?php if(!empty($customer->vat_no)) { ?>
                                             <tr>
                                                 <td style="width: 20% !important">លេខអត្តសញ្ញាណកម្ម អតប </td>
@@ -225,11 +246,6 @@
                                             <td style="width: 45%;">លេខរៀង / N<sup>o</sup></sup></td>
                                             <td style="width: 5%;">:</td>
                                             <td style="width: 50%;"><?= $invs->reference_no ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>កាលបរិច្ឆេទ / Date</td>
-                                            <td>:</td>
-                                            <td><?= $this->erp->hrld($invs->date); ?></td>
                                         </tr>
                                         <?php if ($invs->payment_term) { ?>
                                             <tr>
