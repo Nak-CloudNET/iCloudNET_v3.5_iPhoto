@@ -120,6 +120,9 @@ if (slsale_status = __getItem('slsale_status')) {
 if (wedding_date = __getItem('wedding_date')) {
 	$('#wedding_date').select2("val", wedding_date);
 }
+if (attr_to = __getItem('attr_to')) {
+	$('#attr_to').val(attr_to);
+}
 $('#slpayment_status').change(function (e) {
 	var ps = $(this).val();
 	__setItem('slpayment_status', ps);
@@ -943,6 +946,9 @@ if (__getItem('sloitems')) {
 				if (__getItem('wedding_date')) {
 					__removeItem('wedding_date');
 				}
+                if (__getItem('attr_to')) {
+                    __removeItem('attr_to');
+                }
 				if (__getItem('gift_card_no')) {
 					__removeItem('gift_card_no');
 				}

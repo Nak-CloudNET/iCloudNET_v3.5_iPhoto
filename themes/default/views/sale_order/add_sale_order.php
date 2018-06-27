@@ -95,6 +95,9 @@
              if (__getItem('wedding_date')) {
                 __removeItem('wedding_date');
             }
+            if (__getItem('attr_to')) {
+                __removeItem('attr_to');
+            }
 			<?=$this->session->set_userdata('remove_so2', '0');?>
            // __removeItem('remove_slls');
 		}
@@ -230,7 +233,9 @@
 		$('#slsaleman').on('change', function (e) {
 			__setItem('saleman', $(this).val());
         });
-		
+        $('#attr_to').on('change', function (e) {
+            __setItem('attr_to', $(this).val());
+        });
 		
         if (sldate = __getItem('sldate')) {
             $('#sldate').val(sldate);
