@@ -1,4 +1,4 @@
-
+<?php //$this->erp->print_arrays($sale_order->attr_to); ?>
 <script src="<?= $assets ?>js/jquery.validate.min.js"></script>
 <style>
 	.form-group .select2-container {
@@ -160,6 +160,7 @@
         __setItem('wedding_date', '<?= $this->erp->hrsd($sale_order->wedding_date) ?>');
 
 
+
 		<?php if(isset($sale_order_id)) { ?>
 			$('#slnote').val('<?=$sale_order->note?>');
 			$('#slinnote').val('<?=$sale_order->staff_note?>');
@@ -205,9 +206,9 @@
         <?php } ?>
         <?php
             if (isset($sale_order->date) != NULL) {
-                $sale_order = $sale_order->date;
+                $sale_order_date = $sale_order->date;
             } else {
-                $sale_order = NULL;
+                $sale_order_date = NULL;
             }
         ?>
         if (!__getItem('sldate')) {
@@ -233,7 +234,7 @@
                 todayHighlight: 1,
                 startView: 2,
                 forceParse: 0
-            }).datetimepicker('update', '<?= $sale_order ?>');
+            }).datetimepicker('update', '<?= $sale_order_date ?>');
 		}
 
         $(document).on('change', '#sldate', function (e) {
@@ -715,7 +716,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <?= lang("attr_to", "attr_to"); ?>
-                                            <?php echo form_input('attendant',$quotes->attant_to?$quotes->attant_to:'', 'class="form-control input-tip" id="attendant" '); ?>
+                                            <?php echo form_input('attendant',($quotes->attant_to?$quotes->attant_to:($sale_order->attr_to?$sale_order->attr_to:'')), 'class="form-control input-tip" id="attendant" '); ?>
                                         </div>
                                     </div>
                                 </div>

@@ -2179,6 +2179,7 @@ function loadItems() {
 			var current_date = moment(new Date()).format('DD/MM/YYYY');
 			
 			var pn 					= item_noted ? item_noted : '';
+			var location 			= location ? location : '';
 			var ds 					= item_ds ? item_ds : 0;
             var item_dis = ds.indexOf("%") !== -1 ? ds : ds;
 

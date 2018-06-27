@@ -4706,7 +4706,7 @@ class Sales extends MY_Controller
                 }
 				
                 $this->data['sale_order_items'] = json_encode($pr);
-				 $this->data['delivery_id'] = $delivery_id;
+                $this->data['delivery_id'] = $delivery_id;
             }
 			
 			if($quote_ID){
@@ -6369,7 +6369,7 @@ class Sales extends MY_Controller
                 $options = $this->sales_model->getProductOptions($row->id, $item->warehouse_id);
 				$row->start_date = $item->start_date;
 				$row->end_date = $item->end_date;
-				$row->product_noted = $item->product_noted;
+				$row->note = $item->product_noted;
                 $row->location = $item->location;
 
                 $group_prices = $this->sales_model->getProductPriceGroup($row->id, $customer->price_group_id);
