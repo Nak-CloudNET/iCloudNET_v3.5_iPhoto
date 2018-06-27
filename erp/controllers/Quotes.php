@@ -606,6 +606,7 @@ class Quotes extends MY_Controller
                 $item_name        = $_POST['product_name'][$r];
 				$item_peice       = $_POST['piece'][$r];
 				$item_note 		  = $_POST['product_note'][$r];
+                $item_location 	  = $_POST['location'][$r];
 				$item_wpeice	  = $_POST['wpiece'][$r];
 				$product_group_id = $_POST['product_group_id'][$r];
                 $item_option      = isset($_POST['product_option'][$r]) && $_POST['product_option'][$r] != 'false' ? $_POST['product_option'][$r] : null;
@@ -702,7 +703,8 @@ class Quotes extends MY_Controller
                         'subtotal' => $subtotal,
                         'real_unit_price' => $real_unit_price,
                         'price_id' => $item_price_id,
-						'product_noted' 	=> $item_note
+						'product_noted' 	=> $item_note,
+                        'location' 	=> $item_location
                     );
                     $total += $subtotal;
                 }
@@ -1245,6 +1247,7 @@ class Quotes extends MY_Controller
                 $item_code 			= $_POST['product_code'][$r];
                 $item_name 			= $_POST['product_name'][$r];
 				$item_note 		  	= $_POST['product_note'][$r];
+                $item_location 		= $_POST['location'][$r];
 				$item_peice  		= $_POST['piece'][$r];
 				$item_wpeice  		= $_POST['wpiece'][$r];
 				$product_group_id 	= $_POST['product_group_id'][$r];
@@ -1344,7 +1347,8 @@ class Quotes extends MY_Controller
                         'subtotal' 			=> $subtotal,
                         'real_unit_price' 	=> $real_unit_price,
                         'price_id'          => $item_price_id,
-                        'product_noted'     => $item_note
+                        'product_noted'     => $item_note,
+                        'location'          => $item_location
                     );
 
                     $total += $subtotal;
@@ -1507,6 +1511,7 @@ class Quotes extends MY_Controller
                 $row->tax_rate = $item->tax_rate_id;
                 $row->option = $item->option_id;
 				$row->product_noted = $item->product_noted;
+                $row->location = $item->location;
                 $options = $this->quotes_model->getProductOptions($row->id, $item->warehouse_id);
 				
 				if($expiry_status = 1){
