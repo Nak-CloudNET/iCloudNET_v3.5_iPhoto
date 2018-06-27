@@ -1,5 +1,5 @@
 <?php
-	// $this->erp->print_arrays($inv);
+	//$this->erp->print_arrays($inv);
 ?>
 <script type="text/javascript">
     var count = 1, an = 1, product_variant = 0, DT = <?= $Settings->default_tax_rate ?>,
@@ -373,6 +373,12 @@
                                                     </a>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <?= lang("attr_to", "attr_to"); ?>
+                                            <?php echo form_input('attr_to',$inv->attr_to?$inv->attr_to:'', 'class="form-control input-tip" id="attr_to" '); ?>
                                         </div>
                                     </div>
                                 </div>

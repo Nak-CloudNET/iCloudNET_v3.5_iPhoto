@@ -144,6 +144,7 @@ class Sale_order extends MY_Controller
             $wedding_date = $this->input->post('wedding_date')?$this->erp->fld($this->input->post('wedding_date')):NULL;
             $warehouse_id = $this->input->post('warehouse');
             $customer_id = $this->input->post('customer');
+            $attr_to = $this->input->post('attr_to');
 			$amout_paid = $this->input->post('amount-paid');
 			$group_area = $this->input->post('area');
 			$saleman_by = $this->input->post('saleman');
@@ -425,6 +426,7 @@ class Sale_order extends MY_Controller
                 'reference_no' => $reference,
                 'customer_id' => $customer_id,
                 'customer' => $customer,
+                'attr_to' => $attr_to,
 				'group_areas_id' => $group_area,
                 'biller_id' => $biller_id,
                 'biller' => $biller,
