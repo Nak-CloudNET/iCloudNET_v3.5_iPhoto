@@ -133,11 +133,11 @@ if ($modal) {
                 <?php }else{
                     echo "";
                 } ?>
-                <div class="col-xs-12 col-sm-12">
+               <!-- <div class="col-xs-12 col-sm-12">
                     <h5 style="font-family: 'Arial Black'; font-size: 12px">
                         <b><?= $biller->company; ?><?= $biller->group; ?></b></h5>
 
-                </div>
+                </div> -->
 
             </div>
             <?php
