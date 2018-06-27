@@ -446,6 +446,7 @@ class Quotes_model extends CI_Model
 				quote_items.item_discount,
 				quote_items.product_noted,
 				quote_items.subtotal,
+				quote_items.location,
 				tax_rates.name as taxs, 
 				quotes.*, 
 				IF(erp_quote_items.option_id  > 0, 

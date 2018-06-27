@@ -328,8 +328,8 @@
                         </td>
                         <td style="vertical-align: middle;">
                             <?=$row->product_noted;?>
-                            <?php if(!empty($rows[0]->location)) { ?>
-                                <b>ទីតាំង</b> <?= str_ireplace('<p>','',$rows[0]->location) ?>
+                            <?php if(!empty($row->location)) { ?>
+                                <b>ទីតាំង</b> <?= str_ireplace('<p>','',$row->location) ?>
                             <?php } ?>
                         </td>
                    
