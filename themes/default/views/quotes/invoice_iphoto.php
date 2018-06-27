@@ -1,4 +1,4 @@
-<?php //$this->erp->print_arrays($customer) ?>
+<?php //$this->erp->print_arrays($invs) ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -204,6 +204,15 @@
                                                 <td style="width: 15%;">អតិថិជន / Customer</td>
                                                 <td style="width: 5%;">:</td>
                                                 <td style="width: 30%;"><?= $invs->customer ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                        <?php
+
+                                        if(!empty($invs->attant_to)) { ?>
+                                            <tr>
+                                                <td style="width: 15%;">អ្នកចាត់ចែង / Attr.To</td>
+                                                <td style="width: 5%;">:</td>
+                                                <td style="width: 30%;"><?= $invs->attant_to ?></td>
                                             </tr>
                                         <?php } ?>
                                         <?php if(!empty($customer->address_kh || $supplier->address)) { ?>
