@@ -129,7 +129,7 @@
     });
 </script>
 <body>
-<div class="container" style="width: 821px;margin: 0 auto;">
+<div class="container" style="width: 930px;margin: 0 auto;">
     <div class="col-xs-12"
         <?php
         $cols = 6;
@@ -183,7 +183,7 @@
                                 <div class="col-sm-7 col-xs-7">
                                     <table >
                                         <tr>
-                                            <td>កាលបរិច្ឆេទ / Date</td>
+                                            <td style="width: 35%;">កាលបរិច្ឆេទ / Date</td>
                                             <td>:</td>
                                             <td><?= $this->erp->hrld($invs->date); ?></td>
                                         </tr>
