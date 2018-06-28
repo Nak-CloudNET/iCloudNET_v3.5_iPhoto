@@ -180,7 +180,7 @@
                                 
                             </div>
                             <div class="row" style="text-align: left;">
-                                <div class="col-sm-6 col-xs-6">
+                                <div class="col-sm-7 col-xs-7">
                                     <table >
                                         <tr>
                                             <td>កាលបរិច្ឆេទ / Date</td>
@@ -190,17 +190,24 @@
                                         <?php
                                         if(!empty($customer->company)) { ?>
                                             <tr>
-                                                <td style="width: 45%;">ក្រុមហ៊ុន / Company</td>
+                                                <td style="width: 40%;">ក្រុមហ៊ុន​​​​​​ / Company</td>
                                                 <td style="width: 5%;">:</td>
-                                                <td ><?= $customer->company ?></td>
+                                                <td style="width: 30%;"><?= $customer->company ?></td>
                                             </tr>
                                         <?php } ?>
-
-                                        <?php if ($invs->attendant) { ?>
+                                        <?php if(!empty( $customer->name)) { ?>
                                             <tr>
-                                                <td style="width: 30%;">អ្នកទំនាក់ទំនង / Att. To</td>
+                                                <td style="width: 30%;">អតិថិជន / Customer </td>
                                                 <td>:</td>
-                                                <td><?= $invs->attendant ?></td>
+                                                <td><?= $customer->name ?></td>
+
+                                            </tr>
+                                        <?php } ?>
+                                        <?php if(!empty($invs->attendant)) { ?>
+                                            <tr>
+                                                <td >អ្នកទំនាក់ទំនង / Attr.To</td>
+                                                <td >:</td>
+                                                <td ><?= $invs->attendant ?></td>
                                             </tr>
                                         <?php } ?>
 
@@ -222,6 +229,13 @@
                                                 <td><?= $customer->phone ?></td>
                                             </tr>
                                         <?php } ?>
+                                        <?php if(!empty($customer->email)) { ?>
+                                            <tr>
+                                                <td>អ៊ីម៉េល (Email)</td>
+                                                <td>:</td>
+                                                <td><?= $customer->email ?></td>
+                                            </tr>
+                                        <?php } ?>
                                         <?php if(!empty($customer->vat_no)) { ?>
                                             <tr>
                                                 <td style="width: 20% !important">លេខអត្តសញ្ញាណកម្ម អតប </td>
@@ -229,23 +243,15 @@
                                                 <td><?= $customer->vat_no ?></td>
                                             </tr>
                                         <?php } ?>
-                                      
                                     </table>
                                 </div>
-                                <div class="col-sm-6 col-xs-6">
+                                <div class="col-sm-5 col-xs-5">
                                     <table class="noPadding" border="none">
                                         <tr>
                                             <td style="width: 45%;">លេខរៀង / N<sup>o</sup></sup></td>
                                             <td style="width: 5%;">:</td>
                                             <td style="width: 50%;"><?= $invs->reference_no ?></td>
                                         </tr>
-
-                                        <tr>
-                                            <td>អ្នកលក់ / Sale Man</td>
-                                            <td>:</td>
-                                            <td><?= $invs->saleman; ?></td>
-                                        </tr>
-
                                         <?php if ($invs->payment_term) { ?>
                                             <tr>
                                                 <td>រយៈពេលបង់ប្រាក់ </td>
@@ -258,8 +264,6 @@
                                                 <td><?= $this->erp->hrsd($invs->due_date) ?></td>
                                             </tr>
                                         <?php } ?>
-
-
                                         <?php if ($customer->name_kh) { ?>
                                             <tr>
                                                 <td>កូនប្រុស/ Groom</td>
@@ -276,7 +280,7 @@
                                         <?php } ?>
                                         <?php if($invs->delivery_date) { ?>
                                             <tr>
-                                                <td style="width: 45%;">Pre-Wedding Date </td>
+                                                <td style="width: 30%;">Pre-Wedding Date </td>
                                                 <td>:</td>
                                                 <td><?= $this->erp->hrld($invs->delivery_date) ?></td>
 
@@ -284,13 +288,12 @@
                                         <?php } ?>
                                         <?php if($invs->wedding_date) { ?>
                                             <tr>
-                                                <td style="width: 45%;">Wedding Date </td>
+                                                <td style="width: 30%;">Wedding Date </td>
                                                 <td>:</td>
                                                 <td><?= $this->erp->hrld($invs->wedding_date) ?></td>
 
                                             </tr>
                                         <?php } ?>
-
                                     </table>
                                 </div>
                             </div>

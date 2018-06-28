@@ -365,12 +365,12 @@
 							<?php } 
 
 							if($pos_settings->show_suspend_bar){ ?>
-								<li>
-									<a href="<?= site_url('sales/suspend/?d='. date('Y-m-d', strtotime($sale_suspend_alert_num->date))) ?>" class="">
-										<span class="label label-danger pull-right" style="margin-top:3px;"><?= $sale_suspend_alert_num->alert_num; ?></span>
-										<span style="padding-right: 35px;"><?= lang('sale_suspend_alerts') ?></span>
+								<!--<li>
+									<a href="<?/*= site_url('sales/suspend/?d='. date('Y-m-d', strtotime($sale_suspend_alert_num->date))) */?>" class="">
+										<span class="label label-danger pull-right" style="margin-top:3px;"><?/*= $sale_suspend_alert_num->alert_num; */?></span>
+										<span style="padding-right: 35px;"><?/*= lang('sale_suspend_alerts') */?></span>
 									</a>
-								</li>
+								</li>-->
 							<?php } 
 							if(!empty($delivery_alert_num)){ ?>
 								<!-- <li>
@@ -388,18 +388,18 @@
 									</a>
 								</li>
 							 <?php } ?>
-								<li>
-									<a href="<?= site_url('purchases_request/purchases_request_alerts/') ?>" class="">
-										<span class="label label-danger pull-right" style="margin-top:3px;"><?= $get_purchases_request_alerts; ?></span>
-										<span style="padding-right: 35px;"><?= lang('purchases_request_alerts') ?></span>
+								<!--<li>
+									<a href="<?/*= site_url('purchases_request/purchases_request_alerts/') */?>" class="">
+										<span class="label label-danger pull-right" style="margin-top:3px;"><?/*= $get_purchases_request_alerts; */?></span>
+										<span style="padding-right: 35px;"><?/*= lang('purchases_request_alerts') */?></span>
 									</a>
-								</li>
-								<li>
-									<a href="<?= site_url('purchases/purchase_order_alerts/') ?>" class="">
-										<span class="label label-danger pull-right" style="margin-top:3px;"><?= $get_purchases_order_alerts; ?></span>
-										<span style="padding-right: 35px;"><?= lang('purchase_order_alerts') ?></span>
+								</li>-->
+								<!--<li>
+									<a href="<?/*= site_url('purchases/purchase_order_alerts/') */?>" class="">
+										<span class="label label-danger pull-right" style="margin-top:3px;"><?/*= $get_purchases_order_alerts; */?></span>
+										<span style="padding-right: 35px;"><?/*= lang('purchase_order_alerts') */?></span>
 									</a>
-								</li>
+								</li>-->
 								<li>
 									<a href="<?= site_url('quotes/quote_alerts/') ?>" class="">
 										<span class="label label-danger pull-right" style="margin-top:3px;"><?= $quoties_alert_num; ?></span>
@@ -421,11 +421,11 @@
 							</ul>
 						</li>
                         <?php if (POS) { ?>
-							<li class="dropdown hidden-xs">
-								<a class="btn bdarkGreen tip" title="<?= lang('pos') ?>" data-placement="left" href="<?= site_url('pos') ?>">
-									<i class="fa fa-th-large"></i><p><?= lang('pos') ?></p>
+							<!--<li class="dropdown hidden-xs">
+								<a class="btn bdarkGreen tip" title="<?/*= lang('pos') */?>" data-placement="left" href="<?/*= site_url('pos') */?>">
+									<i class="fa fa-th-large"></i><p><?/*= lang('pos') */?></p>
 								</a>
-							</li>
+							</li>-->
 						<?php } ?>
 						<?php if ($Owner) { ?>
 							<li class="dropdown">

@@ -204,11 +204,11 @@
  
                                             </tr>
                                         <?php } ?>
-                                       <?php if(!empty($invs->attant_to)) { ?>
+                                       <?php if(!empty($invs->attr_to)) { ?>
                                         <tr>
-                                            <td style="width: 15%;">អ្នកចាត់ចែង / Attr.To</td>
-                                            <td style="width: 5%;">:</td>
-                                            <td style="width: 30%;"><?= $invs->attant_to ?></td>
+                                            <td >អ្នកទំនាក់ទំនង / Attr.To</td>
+                                            <td >:</td>
+                                            <td ><?= $invs->attr_to ?></td>
                                         </tr>
                                         <?php } ?>
                                        
