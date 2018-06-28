@@ -129,7 +129,7 @@
     });
 </script>
 <body>
-<div class="container" style="width: 930px;margin: 0 auto;">
+<div class="container" style="width: 900px;margin: 0 auto;">
     <div class="col-xs-12"
         <?php
         $cols = 6;
