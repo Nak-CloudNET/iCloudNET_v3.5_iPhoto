@@ -156,8 +156,8 @@
 		__setItem('sale_order_ref', '<?= $sale_order->reference_no ?>');
 		__setItem('grand_total', '<?= $sale_order->grand_total ?>');
 		__setItem('saleman', '<?= $sale_order->saleman_by ?>');
-        __setItem('delivery_date', '<?= $this->erp->hrsd($sale_order->delivery_date) ?>');
-        __setItem('wedding_date', '<?= $this->erp->hrsd($sale_order->wedding_date) ?>');
+        __setItem('delivery_date', '<?= $sale_order->delivery_date?$this->erp->hrsd($sale_order->delivery_date):"" ?>');
+        __setItem('wedding_date', '<?= $sale_order->wedding_date?$this->erp->hrsd($sale_order->wedding_date):"" ?>');
 
 
 
@@ -573,13 +573,13 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <?= lang("pre_wedding", "pre_wedding"); ?>
-                                <?php echo form_input('delivery_date',($sale_order->delivery_date), 'class="form-control input-tip date" id="delivery_date" '); ?>
+                                <?php echo form_input('delivery_date',(isset($sale_order->delivery_date)?$sale_order->delivery_date:''), 'class="form-control input-tip date" id="delivery_date" '); ?>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <?= lang("wedding_date", "wedding_date"); ?>
-                                <?php echo form_input('wedding_date',(isset($_POST['wedding_date']) ? $_POST['wedding_date'] : ""), 'class="form-control input-tip date" id="wedding_date" '); ?>
+                                <?php echo form_input('wedding_date',(isset($_POST['wedding_date']) ? $_POST['wedding_date'] : ''), 'class="form-control input-tip date" id="wedding_date" '); ?>
                             </div>
                         </div>
 
