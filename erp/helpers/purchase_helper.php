@@ -105,10 +105,20 @@ if (!function_exists('updateStockOnHand')) {
 
         if ($q3->num_rows() > 0) {
             foreach ($q3->result() as $row) {
-                $ci->db->update('warehouses_products_variants', array('quantity' => $row->qty),
-                    array('product_id' => $row->product_id,
-                        'warehouse_id' => $row->warehouse_id,
-                        'option_id' => $row->option_id));
+                $type = $this->site->getProductType($row->product_id);
+                if($type != 'service')
+                {
+                    $ci->db->update('warehouses_products_variants', array('quantity' => $row->qty),
+                        array('product_id' => $row->product_id,
+                            'warehouse_id' => $row->warehouse_id,
+                            'option_id' => $row->option_id));
+                }else{
+                    $ci->db->update('warehouses_products_variants', array('quantity' => 1),
+                        array('product_id' => $row->product_id,
+                            'warehouse_id' => $row->warehouse_id,
+                            'option_id' => $row->option_id));
+                }
+
             }
         }
 

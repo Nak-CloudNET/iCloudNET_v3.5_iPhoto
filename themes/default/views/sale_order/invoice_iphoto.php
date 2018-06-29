@@ -162,7 +162,7 @@
                                         <div class="invoice" style="margin-top:0px;">
                                             <center>
                                                 <h4 class="title">វិក្កយបត្របញ្ជាទិញ</h4>
-                                                <h4 class="title" style="margin-top: 3px;"><b>Sale Orders Invoice</b></h4>
+                                                <h4 class="title" style="margin-top: 10px;"><b>Sale Orders Invoice</b></h4>
                                             </center>
                                         </div>
                                 </div>
