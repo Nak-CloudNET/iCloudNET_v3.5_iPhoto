@@ -92,7 +92,7 @@
     .title{
         font-family:"Khmer OS Muol Light";
         -mox-font-family:"Khmer OS Muol";
-        font-size: 18px;
+        font-size: 22px;
     }
 
     h4{
@@ -158,7 +158,7 @@
                                             <center>
 
                                                 <h4 class="title">វិក្កយបត្រ</h4>
-                                                <h4 class="title" style="margin-top: 10px;"><b>Invoice</b></h4>
+                                                <h4 class="title" style="margin-top: 5px;"><b>Invoice</b></h4>
                                             </center>
 
                                         </div>

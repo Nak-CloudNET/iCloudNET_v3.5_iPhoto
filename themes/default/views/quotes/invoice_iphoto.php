@@ -99,7 +99,7 @@
     .title{
         font-family:"Khmer OS Muol";
         -mox-font-family:"Khmer OS Muol";
-        font-size: 18px;
+        font-size: 22px;
     }
     h4{
         margin-top: 0px;
@@ -161,7 +161,7 @@
                                         <div class="invoice" style="margin-top:20px;">
                                             <center>
                                                 <h4 class="title">វិក្កយបត្រ​សម្រង់តម្លៃ</h4>
-                                                <h4 class="title" style="margin-top: 10px;"><b>Quotation</b></h4>
+                                                <h4 class="title" style="margin-top: 5px;"><b>Quotation</b></h4>
                                             </center>
 
                                         </div>
