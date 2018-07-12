@@ -105,25 +105,52 @@ if (!function_exists('updateStockOnHand')) {
 
         if ($q3->num_rows() > 0) {
             foreach ($q3->result() as $row) {
-                $ci->db->update('warehouses_products_variants', array('quantity' => $row->qty),
-                    array('product_id' => $row->product_id,
-                        'warehouse_id' => $row->warehouse_id,
-                        'option_id' => $row->option_id));
+                $type = $ci->site->getProductType($row->product_id);
+                if($type != 'service')
+                {
+                    $ci->db->update('warehouses_products_variants', array('quantity' => $row->qty),
+                        array('product_id' => $row->product_id,
+                            'warehouse_id' => $row->warehouse_id,
+                            'option_id' => $row->option_id));
+                }else{
+                    $ci->db->update('warehouses_products_variants', array('quantity' => 1),
+                        array('product_id' => $row->product_id,
+                            'warehouse_id' => $row->warehouse_id,
+                            'option_id' => $row->option_id));
+                }
+
             }
         }
 
         if ($q2->num_rows() > 0) {
             foreach ($q2->result() as $row) {
-                $ci->db->update('warehouses_products', array('quantity' => $row->qty),
-                    array('product_id' => $row->product_id,
-                        'warehouse_id' => $row->warehouse_id));
+                $type = $ci->site->getProductType($row->product_id);
+                if($type != 'service')
+                {
+                    $ci->db->update('warehouses_products', array('quantity' => $row->qty),
+                        array('product_id' => $row->product_id,
+                            'warehouse_id' => $row->warehouse_id));
+                }else{
+                    $ci->db->update('warehouses_products', array('quantity' => 1),
+                        array('product_id' => $row->product_id,
+                            'warehouse_id' => $row->warehouse_id));
+                }
+
             }
         }
 
         if ($q1->num_rows() > 0) {
             foreach ($q1->result() as $row) {
-                $ci->db->update('products', array('quantity' => $row->qty),
-                    array('id' => $row->product_id));
+                $type = $ci->site->getProductType($row->product_id);
+                if($type != 'service')
+                {
+                    $ci->db->update('products', array('quantity' => $row->qty),
+                        array('id' => $row->product_id));
+                }else{
+                    $ci->db->update('products', array('quantity' => 1),
+                        array('id' => $row->product_id));
+                }
+
             }
         }
         //===================================

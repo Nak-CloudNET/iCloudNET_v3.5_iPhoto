@@ -586,7 +586,8 @@ class Quotes extends MY_Controller
             $customer_details = $this->site->getCompanyByID($customer_id);
             $customer = $customer_details->name ? $customer_details->name : $customer_details->company;
 			$saleman = $this->input->post('saleman');
-			
+            $sh_date       = $this->input->post('shooting_date')?$this->erp->fld($this->input->post('shooting_date')):NULL;
+
             $biller_details = $this->site->getCompanyByID($biller_id);
             $biller = $biller_details->company != '-' ? $biller_details->company : $biller_details->name;
             $note = $this->input->post('note');
@@ -773,7 +774,8 @@ class Quotes extends MY_Controller
                 'created_by' => $this->session->userdata('user_id'),
 				'saleman' => $saleman,
                 'issue_invoice' => 'pending',
-                'attant_to'=>$attr_to
+                'attant_to'=>$attr_to,
+                'shooting_date'=>$sh_date
             );
 			
             if ($_FILES['document']['size'] > 0) {
@@ -1226,6 +1228,8 @@ class Quotes extends MY_Controller
             $biller_id = $this->input->post('biller');
             $status = $this->input->post('status');
             $attr_to = $this->input->post('attr_to');
+            $sh_date       = $this->input->post('shooting_date')?$this->erp->fld($this->input->post('shooting_date')):NULL;
+
             $shipping = $this->input->post('shipping') ? $this->input->post('shipping') : 0;
             $customer_details = $this->site->getCompanyByID($customer_id);
             $customer = $customer_details->name ? $customer_details->name : $customer_details->company;
@@ -1416,6 +1420,7 @@ class Quotes extends MY_Controller
                 'updated_by' => $this->session->userdata('user_id'),
                 'updated_at' => date('Y-m-d H:i:s'),
                 'attant_to'=>$attr_to,
+                'shooting_date'=>$sh_date
             );
 			
             if ($_FILES['document']['size'] > 0) {

@@ -520,6 +520,13 @@
                                     </div>
 
                                     <div class="col-md-4">
+                                        <div class="form-group">
+                                            <?= lang("Shooting Date", "shooting_date"); ?>
+                                            <?php echo form_input('shooting_date', ($inv->shooting_date?$this->erp->hrsd($inv->shooting_date):''), 'class="form-control input-tip datetime" id="shooting_date" '); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
                                         <!--
                                         <div class="form-group">
                                             <?= lang("deposit", "qudeposit"); ?>
