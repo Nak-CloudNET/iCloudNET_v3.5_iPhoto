@@ -48,6 +48,9 @@
             if (__getItem('wedding_date')) {
                 __removeItem('wedding_date');
             }
+            if (__getItem('shooting_date')) {
+                __removeItem('shooting_date');
+            }
              if (__getItem('attendant')) {
                 __removeItem('attendant');
             }
@@ -719,6 +722,15 @@
                                             <?php echo form_input('attendant',($quotes->attant_to?$quotes->attant_to:($sale_order->attr_to?$sale_order->attr_to:'')), 'class="form-control input-tip" id="attendant" '); ?>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <?= lang("Shooting Date", "shooting_date"); ?>
+                                            <?php echo form_input('shooting_date', (isset($_POST['shooting_date']) ? $_POST['shooting_date'] : ''), 'class="form-control input-tip datetime" id="shooting_date" '); ?>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>

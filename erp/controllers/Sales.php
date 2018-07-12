@@ -3934,6 +3934,7 @@ class Sales extends MY_Controller
             } else {
                 $date = date('Y-m-d H:i:s');
             }
+
 			
             $warehouse_id 		= $this->input->post('warehouse');
             $customer_id 		= $this->input->post('customer_1');
@@ -3964,6 +3965,7 @@ class Sales extends MY_Controller
 			$delivery_update 	= $this->input->post('delivery_id_update');
             $delivery_date      = $this->input->post('delivery_date')? $this->erp->fld($this->input->post('delivery_date')):NULL;
             $wedding_date       = $this->input->post('wedding_date')?$this->erp->fld($this->input->post('wedding_date')):NULL;
+            $sh_date       = $this->input->post('shooting_date')?$this->erp->fld($this->input->post('shooting_date')):NULL;
 			
             $total 				= 0;
             $product_tax 		= 0;
@@ -4220,7 +4222,8 @@ class Sales extends MY_Controller
 				'quote_id' 				=> (isset($sale_q->id)?$sale_q->id:''),
 				'deposit_so_id'			=> (isset($so_deposit_no)? $so_deposit_no:''),
                 'delivery_date'         => $delivery_date,
-                'wedding_date'          => $wedding_date
+                'wedding_date'          => $wedding_date,
+                'shooting_date'          => $sh_date
 
 
             );
@@ -5822,6 +5825,7 @@ class Sales extends MY_Controller
                 $date = date('Y-m-d H:i:s');
             }
 
+
             $warehouse_id           = $this->input->post('warehouse');
             $customer_id            = $this->input->post('customer');
             $attendant              = $this->input->post('attendant');
@@ -5837,6 +5841,7 @@ class Sales extends MY_Controller
             $delivery_id            = $this->input->post('delivery_id');
             $delivery_date          = $this->input->post('delivery_date')? $this->erp->fld($this->input->post('delivery_date')):NULL;
             $wedding_date           = $this->input->post('wedding_date')?$this->erp->fld($this->input->post('wedding_date')):NULL;
+            $sh_date       = $this->input->post('shooting_date')?$this->erp->fld($this->input->post('shooting_date')):NULL;
 
             $payment_term           = $this->input->post('payment_term');
             $payment_term_details   = $this->site->getAllPaymentTermByID($payment_term);
@@ -6054,6 +6059,7 @@ class Sales extends MY_Controller
 				'date' 					=> $date,
                 'delivery_date'         => $delivery_date,
                 'wedding_date'          => $wedding_date,
+                'shooting_date'          => $sh_date,
                 'reference_no' 			=> $reference,
                 'customer_id' 			=> $customer_id,
                 'customer' 				=> $customer,

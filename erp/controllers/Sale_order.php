@@ -143,6 +143,8 @@ class Sale_order extends MY_Controller
             $delivery_date = $this->input->post('delivery_date')? $this->erp->fld($this->input->post('delivery_date')):NULL;
             $wedding_date = $this->input->post('wedding_date')?$this->erp->fld($this->input->post('wedding_date')):NULL;
             $warehouse_id = $this->input->post('warehouse');
+            $sh_date       = $this->input->post('shooting_date')?$this->erp->fld($this->input->post('shooting_date')):NULL;
+
             $customer_id = $this->input->post('customer');
             $attr_to = $this->input->post('attr_to');
 			$amout_paid = $this->input->post('amount-paid');
@@ -427,6 +429,7 @@ class Sale_order extends MY_Controller
                 'customer_id' => $customer_id,
                 'customer' => $customer,
                 'attr_to' => $attr_to,
+                'shooting_date' => $sh_date,
 				'group_areas_id' => $group_area,
                 'biller_id' => $biller_id,
                 'biller' => $biller,
@@ -2392,6 +2395,8 @@ class Sale_order extends MY_Controller
             $delivery_date = $this->input->post('delivery_date')? $this->erp->fld($this->input->post('delivery_date')):NULL;
             $wedding_date = $this->input->post('wedding_date')?$this->erp->fld($this->input->post('wedding_date')):NULL;
             $warehouse_id = $this->input->post('warehouse');
+            $sh_date       = $this->input->post('shooting_date')?$this->erp->fld($this->input->post('shooting_date')):NULL;
+
             $customer_id = $this->input->post('customer');
             $attr_to = $this->input->post('attr_to');
 			$group_area = $this->input->post('area');
@@ -2591,6 +2596,7 @@ class Sale_order extends MY_Controller
                 'customer_id' => $customer_id,
                 'customer' => $customer,
                 'attr_to' => $attr_to,
+                'shooting_date' => $sh_date,
 				'group_areas_id' => $group_area,
                 'biller_id' => $biller_id,
                 'biller' => $biller,

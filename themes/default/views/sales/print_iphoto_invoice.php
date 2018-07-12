@@ -31,26 +31,33 @@
     @media print {
 
         .pageBreak {
-            page-break-after: always;
-            -webkit-page-break-after: always;
+            page-break-after: always !important;
+            -webkit-page-break-after: always !important;
+            margin-top: 20px !important;
         }
-
+        .container {
+            width: 97% !important;
+            margin: 10px auto !important;
+            padding: 10px !important;
+        }
         .customer_label {
             padding-left: 0 !important;
         }
-        tbody{
-            display:table-row-group;
-            -webkit-print-color-adjust: exact;
+        /*tbody{
+            display:table-row-group !important;
+            -webkit-print-color-adjust: exact !important;
         }
-        .print th{
-            color:white !important;
-            background:rgb(78,41,5)   !important;
 
-        }
         tfoot {
             display: table-footer-group;
             -webkit-display: table-footer-group;
             page-break-after: always;
+
+        }*/
+        .print th{
+            color:white !important;
+            background:rgb(78,41,5)   !important;
+
         }
         .invoice_label {
             padding-left: 0 !important;
@@ -59,10 +66,10 @@
             bottom: 10px !important;
         }
         #note{
-            max-width: 95% !important;
+            max-width: 100% !important;
             margin: 0 auto !important;
+            padding-left: 15px !important;
             border-radius: 5px 5px 5px 5px !important;
-            margin-left: 26px !important;
         }
         .col-xs-12, .col-sm-12{
             padding-left:1px;
@@ -70,7 +77,9 @@
             margin-left:0px;
             margin-right:0px;
         }
-        table {border-collapse: collapse;}
+        table {
+            border-collapse: collapse;
+        }
 
 
     }
@@ -87,7 +96,8 @@
     }
 
     .table > thead > tr > th,.table > thead > tr > td, tbody > tr > th, .table > tfoot > tr > th, .table > tbody > tr > td, .table > tfoot > tr > td{
-        padding:5px;
+        padding:5px !important;
+        border-top: 1px solid #fff;
     }
     .title{
         font-family:"Khmer OS Muol Light";
@@ -136,6 +146,7 @@
         if ($discount != 0) {
             $cols = 7;
         }
+        //$this->erp->print_arrays($invs);
         ?>
         <div class="row">
             <table class="table">
@@ -291,6 +302,14 @@
                                                 <td style="width: 30%;">Wedding Date </td>
                                                 <td>:</td>
                                                 <td><?= $this->erp->hrld($invs->wedding_date) ?></td>
+
+                                            </tr>
+                                        <?php } ?>
+                                        <?php if($invs->shooting_date) { ?>
+                                            <tr>
+                                                <td style="width: 30%;">Shooting Date </td>
+                                                <td>:</td>
+                                                <td><?= $this->erp->hrld($invs->shooting_date) ?></td>
 
                                             </tr>
                                         <?php } ?>
@@ -465,11 +484,7 @@
                 <?php
                 if ($invs->grand_total != $invs->total) { ?>
                     <tr class="border-foot">
-                        <td rowspan = "<?= $row; ?>" colspan="<?= $col2; ?>" style="border-left: 1px solid #FFF !important; border-bottom: 1px solid #FFF !important;">
-                            <?php if (!empty($invs->invoice_footer)) { ?>
-                                <p ><strong><u>Note:</u></strong></p>
-                                <p style="margin-top:-5px !important; line-height: 2"><?= $invs->invoice_footer ?></p>
-                            <?php } ?>
+                        <td rowspan = "<?= $row; ?>" colspan="<?= $col2; ?>">
                         </td>
                         <td colspan="<?= $col; ?>" style="text-align: right; font-weight: bold;">សរុប​ / <?= strtoupper(lang('total')) ?>
                             (<?= $default_currency->code; ?>)
@@ -501,11 +516,8 @@
 
                 <tr class="border-foot">
                     <?php if ($invs->grand_total == $invs->total) { ?>
-                        <td rowspan="<?= $row; ?>" colspan="<?= $col2; ?>" style="border-left: 1px solid #FFF !important; border-bottom: 1px solid #FFF !important;">
-                            <?php if (!empty($invs->invoice_footer)) { ?>
-                                <p><strong><u>Note:</u></strong></p>
-                                <p><?= $invs->invoice_footer ?></p>
-                            <?php } ?>
+                        <td rowspan="<?= $row; ?>" colspan="<?= $col2; ?>">
+
                         </td>
                     <?php } ?>
                     <td colspan="<?= $col; ?>" style="text-align: right; font-weight: bold;">សរុបរួម / <?= strtoupper(lang('total_amount')) ?>
@@ -545,7 +557,17 @@
                     </tr>
                 <?php } ?>
 
+                <tr>
+                    <td colspan="9">
+                        <?php if (!empty($invs->invoice_footer)) { ?>
+                            <div style=" border-radius: 5px 5px 5px 5px;border:1px solid black;height: auto;margin-bottom: 50px !important;margin-top: 50px !important;" id="note" class="col-md-12 col-xs-12">
+                                <p style="margin-top:10px;"><?= $invs->invoice_footer ?></p>
+                            </div>
+                        <?php } ?>
+                    </td>
+                </tr>
                 </tbody>
+
                 <tfoot class="tfoot">
                     <tr>
                         <th colspan="9">
@@ -553,8 +575,9 @@
                                 <div style="border-radius: 5px 5px 5px 5px;border:1px solid black;height: auto;" id="note" class="col-md-12 col-xs-12">
                                     <div style="margin-left: 10px;margin-top:10px;"><?= $this->erp->decode_html($invs->note); ?></div>
                                 </div>
-                                <br><br><br><br>
+
                             <?php } ?>
+                            <br><br><br><br>
                             <div class="clear-both">
                                 <div style="width:100%;height:80px"></div>
                             </div>
@@ -581,41 +604,43 @@
                                     </center>
                                 </div>
                             </div>
+
+
                         </th>
                     </tr>
                     <tr>
                         <th colspan="9">
                              <div class="myhide">
-                                    <div class="co-sm-2" style="float:left;margin-right:10px;">
-                                        <center>
-                                            <b>Line</b>
-                                        </center>
-                                        <img width='100px' height='105px'  src="<?= base_url('assets/uploads/qrcodes/line.png') ?>">
-                                    </div>
-                                    <div class="co-sm-2" style="float:left;margin-right:10px;">
-                                        <center>
-                                            <b>Wechat</b>
-                                        </center>
-                                        <img width='100px' height='100px'  src="<?= base_url('assets/uploads/qrcodes/wechat.png') ?>">
-                                    </div>
-                                    <div style="margin-top: 15px;">
-                                        <?php if(!empty($biller->vat_no)) { ?>
-                                            <p>លេខអត្តសញ្ញាណកម្ម អតប (VAT No):&nbsp;<?= $biller->vat_no; ?></p>
-                                        <?php } ?>
+                                 <div class="co-sm-2" style="float:left;margin-right:10px;">
+                                     <center>
+                                         <b>Line</b>
+                                     </center>
+                                     <img width='100px' height='105px'  src="<?= base_url('assets/uploads/qrcodes/line.png') ?>">
+                                 </div>
+                                 <div class="co-sm-2" style="float:left;margin-right:10px;">
+                                     <center>
+                                         <b>Wechat</b>
+                                     </center>
+                                     <img width='100px' height='100px'  src="<?= base_url('assets/uploads/qrcodes/wechat.png') ?>">
+                                 </div>
+                                 <div style="margin-top: 15px;">
+                                     <?php if(!empty($biller->vat_no)) { ?>
+                                         <p>លេខអត្តសញ្ញាណកម្ម អតប (VAT No):&nbsp;<?= $biller->vat_no; ?></p>
+                                     <?php } ?>
 
-                                        <?php if(!empty($biller->address)) { ?>
-                                            <p style="margin-top:-10px !important;">អាសយដ្ឋាន ៖ &nbsp;<?= $biller->address; ?></p>
-                                        <?php } ?>
+                                     <?php if(!empty($biller->address)) { ?>
+                                         <p style="margin-top:-10px !important;">អាសយដ្ឋាន ៖ &nbsp;<?= $biller->address; ?></p>
+                                     <?php } ?>
 
-                                        <?php if(!empty($biller->phone)) { ?>
-                                            <p style="margin-top:-10px ;">ទូរស័ព្ទលេខ (Tel):&nbsp;<?= $biller->phone; ?></p>
-                                        <?php } ?>
+                                     <?php if(!empty($biller->phone)) { ?>
+                                         <p style="margin-top:-10px ;">ទូរស័ព្ទលេខ (Tel):&nbsp;<?= $biller->phone; ?></p>
+                                     <?php } ?>
 
-                                        <?php if(!empty($biller->email)) { ?>
-                                            <p style="margin-top:-10px !important;">សារអេឡិចត្រូនិច (E-mail):&nbsp;<?= $biller->email; ?></p>
-                                        <?php } ?>
-                                    </div>
-                            </div>
+                                     <?php if(!empty($biller->email)) { ?>
+                                         <p style="margin-top:-10px !important;">សារអេឡិចត្រូនិច (E-mail):&nbsp;<?= $biller->email; ?></p>
+                                     <?php } ?>
+                                 </div>
+                             </div>
                         </th>
                     </tr>
                 </tfoot>

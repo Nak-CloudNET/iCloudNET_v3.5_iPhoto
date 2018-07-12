@@ -15,3 +15,14 @@ ADD COLUMN `expiry_id`  int(11) NULL AFTER `expiry`;
 
 ALTER TABLE `erp_customer_groups`
 ADD COLUMN `order_discount`  int(11) NULL AFTER `makeup_cost`;
+
+/* 11/07/2018 By Sreylen */
+ALTER TABLE `erp_quotes`
+ADD COLUMN `shooting_date`  date NULL AFTER `attant_to`;
+
+/* 12/07/2018 By Sreylen */
+ALTER TABLE `erp_sales`
+ADD COLUMN `shooting_date`  date NULL DEFAULT NULL AFTER `wedding_date`;
+
+ALTER TABLE `erp_sale_order`
+ADD COLUMN `shooting_date`  date NULL DEFAULT NULL AFTER `attr_to`;
