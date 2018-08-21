@@ -785,23 +785,7 @@ if ($q->num_rows() > 0) {
 
                     					<?php } else { ?>
                                         <input type="hidden" class="reference_nob" name="reference_nob" id="reference_nob" value="<?= $reference ? $reference : '' ?>"/>
-                    					<div class="btn-group">
-                                            <div class="btn-group btn-group-justified">
-                                                <div class="btn-group">
-                                                    <button type="button" title="Print Order - <?= $pos_settings->print_items_list ?>" class="btn btn-primary <?php echo ($layout == 6?'font6':'') ?>" id="print_order_food" style="width:50%;">
-                                                        <i class="fa fa-print"></i> <?= lang('order_food'); ?>
-                                                    </button>
-													<button type="button" title="Print Order - <?= $pos_settings->print_items_list ?>" class="btn btn-primary <?php echo ($layout == 6?'font6':'') ?>" id="print_order_drink" style="width:50%;">
-                                                        <i class="fa fa-print"></i> <?= lang('order_drink'); ?>
-                                                    </button>
 
-                                                    <button type="button" title="Print Bill - <?= $pos_settings->print_bill ?>" class="btn btn-primary <?php echo ($layout == 6?'font6':'') ?>" id="print_bill"  style="margin-left: 0 !important;width:100%;">
-                                                        <i class="fa fa-print"></i> <?= lang('print_bill'); ?>
-                                                    </button>
-
-                                                </div>
-                                            </div>
-                                        </div>
 
                     					<?php } ?>
                                         <div class="btn-group">
