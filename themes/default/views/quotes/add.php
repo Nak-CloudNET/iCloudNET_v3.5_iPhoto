@@ -515,7 +515,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <?= lang("attr_to", "attr_to"); ?>
-                                            <?php echo form_input('attr_to', '', 'class="form-control input-tip" id="attr_to" required="required"'); ?>
+                                            <?php echo form_input('attr_to', '', 'class="form-control input-tip" id="attr_to"'); ?>
                                         </div>
                                     </div>
 
