@@ -240,6 +240,7 @@ class Site extends CI_Model
 		}
 		return false;
 	}
+
 	public function get_quote_alerts()
 	{
 		$this->db->select('COUNT(*) AS count');
@@ -1415,9 +1416,14 @@ class Site extends CI_Model
 		if($this->get_setting()->separate_ref == 1){
 			$biller_prefix = true;
 			if($biller){
-				$condition = array('DATE_FORMAT(date,"%Y-%m")' => date('Y-m'),'biller_id'=>json_decode($biller));
+				$condition = array('DATE_FORMAT(date,"%Y-%m")' => date('Y-m'),'biller_id'=>JSON_decode($biller));
 				if ($this->Settings->reference_format == 4 || $this->Settings->reference_format == 5) {
-					$q = $this->db->get_where('order_ref', array('biller_id'=> JSON_decode($biller)), 1);
+                    $this->db
+                        ->select('order_ref.*')
+                        ->from('order_ref')
+                        ->where_in('biller_id', JSON_decode($biller))
+                        ->limit(1);
+                    $q = $this->db->get();
 				} elseif($this->Settings->reference_format == 2) {
 					$this->db
 						 ->select('order_ref.*')
@@ -1427,7 +1433,13 @@ class Site extends CI_Model
 						 ->limit(1);
 					$q = $this->db->get();
 				} else {
-					$q = $this->db->get_where('order_ref',$condition, 1);
+                    $this->db
+                        ->select('order_ref.*')
+                        ->from('order_ref')
+                        ->where('DATE_FORMAT(date,"%Y-%m")', date('Y-m'))
+                        ->where_in('biller_id', JSON_decode($biller))
+                        ->limit(1);
+                    $q = $this->db->get();
 				}
 			}else{
 				$q = $this->db->get('order_ref', 1);
