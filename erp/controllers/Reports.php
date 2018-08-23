@@ -23281,46 +23281,46 @@ class Reports extends MY_Controller
 	}
 	
 	//////////////////////////rothana addition//////////////////////
-	
-	public function sales_detail($biller_id = NULL,$warehouse_id=null)
-	{
-		$this->erp->checkPermissions('report_sale',NULL,'sale_report');		
-		$user = $this->site->getUser();
-		$this->load->library("pagination");
-		$post = $this->input->post();
-		$datt = $this->reports_model->getLastDate("sales", "date");
+
+    public function sales_detail($biller_id = NULL,$warehouse_id=null)
+    {
+        $this->erp->checkPermissions('report_sale',NULL,'sale_report');
+        $user = $this->site->getUser();
+        $this->load->library("pagination");
+        $post = $this->input->post();
+        $datt = $this->reports_model->getLastDate("sales", "date");
         $str    = '';
 
-		if ($post['reference_no']) {
+        if ($post['reference_no']) {
             $reference_no 				= $post['reference_no'];
             $this->data['reference_no'] = $post['reference_no'];
-			$str .="&reference_no=".$reference_no;
+            $str .="&reference_no=".$reference_no;
         }else{
-			$reference_no = null;
+            $reference_no = null;
         }
-		
-		if ($post['customer']) {
+
+        if ($post['customer']) {
             $customer 				= $post['customer'];
             $this->data['customer'] = $post['customer'];
-			$str .="&customer=".$customer;
+            $str .="&customer=".$customer;
         }else{
-			$customer = null;
-        } 
-		
-		if ($post['biller']) {
+            $customer = null;
+        }
+
+        if ($post['biller']) {
             $biller 				= $post['biller'];
             $this->data['biller'] = $post['biller'];
-			$str .="&biller=".$biller;
+            $str .="&biller=".$biller;
         }else{
-			$biller = null;
-        } 
-		
-		if ($post['warehouse']) {
+            $biller = null;
+        }
+
+        if ($post['warehouse']) {
             $warehouse 				= $post['warehouse'];
             $this->data['warehouse'] = $post['warehouse'];
-			$str .="&warehouse=".$warehouse;
+            $str .="&warehouse=".$warehouse;
         }else{
-			$warehouse = null;
+            $warehouse = null;
         }
 
         if ($post['start_date']) {
@@ -23332,138 +23332,138 @@ class Reports extends MY_Controller
             $this->data['start_date'] = $start_date;
         }
 //        $this->erp->print_arrays($start_date);
-		
-		if ($post['end_date']) {
+
+        if ($post['end_date']) {
             $end_date 				= $post['end_date'];
             $this->data['end_date'] = $post['end_date'];
-			$str .="&end_date=".$end_date;
+            $str .="&end_date=".$end_date;
         }else{
             $end_date = date('d/m/Y');
             $this->data['end_date'] = $end_date;
-        } 
-		
-		if ($post['customer_group']) {
-            $customer_group 				= $post['customer_group'];
-            $this->data['customer_group']   = $post['customer_group'];
-			$str .="&customer_group=".$customer_group;
-        }else{
-			$customer_group = null;
-        } 
-		
-		if ($post['user']) {
-            $user 				= $post['user'];
-            $this->data['user']   = $post['user'];
-			$str .="&user=".$user;
-        }else{
-			$user = null;
         }
 
-		if ($post['type']) {
+        if ($post['customer_group']) {
+            $customer_group 				= $post['customer_group'];
+            $this->data['customer_group']   = $post['customer_group'];
+            $str .="&customer_group=".$customer_group;
+        }else{
+            $customer_group = null;
+        }
+
+        if ($post['user']) {
+            $user 				= $post['user'];
+            $this->data['user']   = $post['user'];
+            $str .="&user=".$user;
+        }else{
+            $user = null;
+        }
+
+        if ($post['type']) {
             $type 				= $post['type'];
             $this->data['type']   = $post['type'];
-			$str .="&type=".$type;
+            $str .="&type=".$type;
         }else{
-			$type = null;
-        }	
+            $type = null;
+        }
 
-		if ($post['types']) {
+        if ($post['types']) {
             $types 				= $post['types'];
             $this->data['types']   = $post['types'];
-			$str .="&types=".$types;
+            $str .="&types=".$types;
         }else{
-			$types = null;
-        }	
-		
-		if($biller_id != NULL){
-			$this->data['biller_id'] = $biller_id;
-		}else{
-			if($user->biller_id){
-				$this->data['biller_id'] = $user->biller_id;
-			}else{
-				$this->data['biller_id'] = "";
-			}
-		}
-		
-		if(!$this->Owner && !$this->Admin) {
-			if($user->biller_id){
-				$this->data['billers'] = $this->site->getCompanyByArray($user->biller_id);
-			}else{
-				$this->data['billers'] = $this->site->getAllCompanies('biller');
-			}
-		}else{
-			$this->data['billers'] = $this->site->getAllCompanies('biller');
-		}
-		
-		if(isset($this->data['reference_no']) && $this->data['reference_no'] !=''){
-			$this->db->where("reference_no", $this->data['reference_no']);
-		}
+            $types = null;
+        }
 
-		if($customer){
+        if($biller_id != NULL){
+            $this->data['biller_id'] = $biller_id;
+        }else{
+            if($user->biller_id){
+                $this->data['biller_id'] = $user->biller_id;
+            }else{
+                $this->data['biller_id'] = "";
+            }
+        }
+
+        if(!$this->Owner && !$this->Admin) {
+            if($user->biller_id){
+                $this->data['billers'] = $this->site->getCompanyByArray($user->biller_id);
+            }else{
+                $this->data['billers'] = $this->site->getAllCompanies('biller');
+            }
+        }else{
+            $this->data['billers'] = $this->site->getAllCompanies('biller');
+        }
+
+        if(isset($this->data['reference_no']) && $this->data['reference_no'] !=''){
+            $this->db->where("reference_no", $this->data['reference_no']);
+        }
+
+        if($customer){
             $this->db->where("customer_id", $customer);
-		} else {
+        } else {
             $customer = NULL;
         }
 
-		if($biller){
-			$this->db->where("biller_id", $biller);
-		} else {
+        if($biller){
+            $this->db->where("biller_id", $biller);
+        } else {
             $biller = NULL;
         }
 
-		if($warehouse){
-			$this->db->where("warehouse_id", $warehouse);
-		} else {
+        if($warehouse){
+            $this->db->where("warehouse_id", $warehouse);
+        } else {
             $warehouse = NULL;
         }
 
-		if($user){
-			$this->db->where("created_by", $user);
-		} else {
+        if($user){
+            $this->db->where("created_by", $user);
+        } else {
             $user = NULL;
         }
 
-		if($type){
-			$this->db->where("type", $type);
-		} else {
+        if($type){
+            $this->db->where("type", $type);
+        } else {
             $type = NULL;
         }
-		  
-		if($types){
-			$this->db->where("pos", $types);
-		} else {
+
+        if($types){
+            $this->db->where("pos", $types);
+        } else {
             $types = NULL;
         }
 
-		if($start_date){
-			$this->db->where("date_format(date,'%Y-%m-%d') >=", $this->erp->fld($start_date) . '00:00:00');
-			$this->db->where("date_format(date,'%Y-%m-%d') <=", $this->erp->fld($end_date) . '23:59:00');
-		}
-		
-		$sales_nums 				= $this->db->group_by('reference_no')->get('sales')->num_rows();
-		
-		$config 					= array();
-		$config['suffix'] 			= "?v=1".$str;
+        if($start_date){
+            $this->db->where("date_format(date,'%Y-%m-%d') >=", $this->erp->fld($start_date) . '00:00:00');
+            $this->db->where("date_format(date,'%Y-%m-%d') <=", $this->erp->fld($end_date) . '23:59:00');
+        }
+
+        $sales_nums 				= $this->db->group_by('reference_no')->get('sales')->num_rows();
+
+        $config 					= array();
+        $config['suffix'] 			= "?v=1".$str;
         $config["base_url"] 		= base_url() . "reports/sales_detail/";
-		$config["total_rows"] 		= $sales_nums;
-		$config["ob_set"] 			= ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $config["total_rows"] 		= $sales_nums;
+        $config["ob_set"] 			= ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $config["per_page"] 		= 100;
-		$config["uri_segment"] 		= 3;
-		$config['full_tag_open'] 	= '<ul class="pagination pagination-sm">';
-		$config['full_tag_close'] 	= '</ul>';
-		$config['next_tag_open'] 	= '<li class="next">';
-		$config['next_tag_close'] 	= '<li>';
-		$config['prev_tag_open'] 	= '<li class="prev">';
-		$config['prev_tag_close'] 	= '<li>';
-		$config['cur_tag_open'] 	= '<li class="active"><a href="#">';
-		$config['cur_tag_close'] 	= '</a><li>';
-		$config['first_tag_open'] 	= '<li>';
-		$config['first_tag_close'] 	= '<li>';
-		$config['last_tag_open'] 	= '<li>';
-		$config['last_tag_close'] 	= '<li>';
-		$config['num_tag_open'] 	= '<li>';
-		$config['num_tag_close'] 	= '</li>';
-		
-		$sql1 = "SELECT
+        $config["uri_segment"] 		= 3;
+        $config['full_tag_open'] 	= '<ul class="pagination pagination-sm">';
+        $config['full_tag_close'] 	= '</ul>';
+        $config['next_tag_open'] 	= '<li class="next">';
+        $config['next_tag_close'] 	= '<li>';
+        $config['prev_tag_open'] 	= '<li class="prev">';
+        $config['prev_tag_close'] 	= '<li>';
+        $config['cur_tag_open'] 	= '<li class="active"><a href="#">';
+        $config['cur_tag_close'] 	= '</a><li>';
+        $config['first_tag_open'] 	= '<li>';
+        $config['first_tag_close'] 	= '<li>';
+        $config['last_tag_open'] 	= '<li>';
+        $config['last_tag_close'] 	= '<li>';
+        $config['num_tag_open'] 	= '<li>';
+        $config['num_tag_close'] 	= '</li>';
+
+        $sql1 = "SELECT
 					erp_sales.id,
 					1 as type,
 					erp_sales.date,
@@ -23490,8 +23490,8 @@ class Reports extends MY_Controller
 				WHERE erp_sales.opening_ar = 0
 				GROUP BY
 					erp_sales.id,reference_no";
-					
-		$sql2 = "SELECT
+
+        $sql2 = "SELECT
 					erp_return_sales.id,
 					2 as type,
 					erp_return_sales.date,
@@ -23516,43 +23516,43 @@ class Reports extends MY_Controller
 					erp_return_sales
 				INNER JOIN erp_return_items ON erp_return_sales.id = erp_return_items.return_id
 				GROUP BY
-					erp_return_sales.id,reference_no";	
-			
+					erp_return_sales.id,reference_no";
+
         $sql3 = "";
-		$sqls = "";
-		
-		if($reference_no){
+        $sqls = "";
+
+        if($reference_no){
             $sql3 .= " AND reference_no = '{$this->data['reference_no']}'";
-			$sqls .= " AND reference_no = '{$this->data['reference_no']}'";
-		}
-		if($customer){
+            $sqls .= " AND reference_no = '{$this->data['reference_no']}'";
+        }
+        if($customer){
             $sql3 .= " AND customer_id = '{$this->data['customer']}'";
-			$sqls .= " AND customer_id = '{$this->data['customer']}'";
-		}
-		if($biller){
+            $sqls .= " AND customer_id = '{$this->data['customer']}'";
+        }
+        if($biller){
             $sql3 .= " AND biller_id = '{$this->data['biller']}'";
-			$sqls .= " AND biller_id = '{$this->data['biller']}'";
-		}
-		if($warehouse){
+            $sqls .= " AND biller_id = '{$this->data['biller']}'";
+        }
+        if($warehouse){
             $sql3 .= " AND warehouse_id = '{$this->data['warehouse']}'";
-			$sqls .= " AND warehouse_id = '{$this->data['warehouse']}'";
-		}
-		if($user){
+            $sqls .= " AND warehouse_id = '{$this->data['warehouse']}'";
+        }
+        if($user){
             $sql3 .= " AND created_by = '{$this->data['user']}'";
-			$sqls .= " AND created_by = '{$this->data['user']}'";
-		}
-		if($type){
+            $sqls .= " AND created_by = '{$this->data['user']}'";
+        }
+        if($type){
             $sql3 .= " AND type = {$this->data['type']}";
-			$sqls .= " AND type = {$this->data['type']}";
-		} 
-		if($types){
+            $sqls .= " AND type = {$this->data['type']}";
+        }
+        if($types){
             $sql3 .= " AND pos = {$this->data['types']}";
-			$sqls .= " AND pos = {$this->data['types']}";
-		}
-		if(!$this->Owner && !$this->Admin){
-			$sql4='';
-			$sql4 .= " AND warehouse_id IN ({$this->session->userdata('warehouse_id')})";
-		}
+            $sqls .= " AND pos = {$this->data['types']}";
+        }
+        if(!$this->Owner && !$this->Admin){
+            $sql4='';
+            $sql4 .= " AND warehouse_id IN ({$this->session->userdata('warehouse_id')})";
+        }
 
         if ($start_date && $end_date) {
             $s_date = $this->erp->fld($start_date) . ' 00:00:00';
@@ -23561,39 +23561,39 @@ class Reports extends MY_Controller
         }
 
         if ($this->input->get('start_date') || $this->input->get('end_date')) {
-		    $sales = $this->db->query("SELECT * FROM ({$sql1} UNION {$sql2}) AS TEMP WHERE 1=1 {$sqls} {$sql4} ORDER BY id DESC ")->result();
+            $sales = $this->db->query("SELECT * FROM ({$sql1} UNION {$sql2}) AS TEMP WHERE 1=1 {$sqls} {$sql4} ORDER BY id DESC ")->result();
         } else {
             $sales = $this->db->query("SELECT * FROM ({$sql1} UNION {$sql2}) AS TEMP WHERE 1=1 {$sql3} {$sql4} ORDER BY id DESC ")->result();
         }
-									
-		$this->pagination->initialize($config);
-		$this->data["pagination"] 		= $this->pagination->create_links();
-		$this->data['sales'] 			= $sales;
+
+        $this->pagination->initialize($config);
+        $this->data["pagination"] 		= $this->pagination->create_links();
+        $this->data['sales'] 			= $sales;
         $this->data['error'] 			= (validation_errors()) ? validation_errors() : $this->session->flashdata('error');
         $this->data['users'] 			= $this->reports_model->getStaff();
         if ($this->Owner || $this->Admin || !$this->session->userdata('warehouse_id')) {
             $this->data['warehouses'] = $this->site->getAllWarehouses();
             $this->data['warehouse_id'] = $warehouse_id;
             $this->data['warehouse'] = $warehouse_id ? $this->site->getWarehouseByID($warehouse_id) : NULL;
-			
+
         } else {
-			
+
             $this->data['warehouses'] = $this->products_model->getUserWarehouses();
-			if($warehouse_id){
-				$this->data['warehouse_id'] = $warehouse_id;
-				$this->data['warehouse'] = $warehouse_id ? $this->site->getWarehouseByID($warehouse_id) : NULL;
-			}else{
-				
-				$this->data['warehouse_id'] = str_replace(',', '-',$this->session->userdata('warehouse_id'));
-				$this->data['warehouse'] = $this->session->userdata('warehouse_id') ? $this->products_model->getUserWarehouses() : NULL;
-			}
+            if($warehouse_id){
+                $this->data['warehouse_id'] = $warehouse_id;
+                $this->data['warehouse'] = $warehouse_id ? $this->site->getWarehouseByID($warehouse_id) : NULL;
+            }else{
+
+                $this->data['warehouse_id'] = str_replace(',', '-',$this->session->userdata('warehouse_id'));
+                $this->data['warehouse'] = $this->session->userdata('warehouse_id') ? $this->products_model->getUserWarehouses() : NULL;
+            }
         }
-		$this->data['customer_groups'] 	= $this->companies_model->getAllCustomerGroups();
-		$this->data['customers'] 		= $this->site->getCustomers();
+        $this->data['customer_groups'] 	= $this->companies_model->getAllCustomerGroups();
+        $this->data['customers'] 		= $this->site->getCustomers();
         $bc = array(array('link' => base_url(), 'page' => lang('home')), array('link' => site_url('reports'), 'page' => lang('reports')), array('link' => '#', 'page' => lang('sales_detail_report')));
         $meta = array('page_title' => lang('sales_detail_report'), 'bc' => $bc);
         $this->page_construct('reports/sales_detail_report', $meta, $this->data);
-	}
+    }
 	
 	public function purchase_report_by_invoice($biller_id = NULL)
 	{
