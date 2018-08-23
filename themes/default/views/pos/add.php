@@ -785,8 +785,7 @@ if ($q->num_rows() > 0) {
 
                     					<?php } else { ?>
                                         <input type="hidden" class="reference_nob" name="reference_nob" id="reference_nob" value="<?= $reference ? $reference : '' ?>"/>
-
-
+                    					
                     					<?php } ?>
                                         <div class="btn-group">
                                             <button type="button" title="Payment - <?= $pos_settings->finalize_sale ?>" style="<?php echo ($layout == 6?'height:85px':'height:68px') ?>" class="btn btn-success <?php echo ($layout == 6?'font6':'') ?>" id="payment">
