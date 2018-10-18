@@ -1880,13 +1880,24 @@ class Products extends MY_Controller
 
                 $arrResult = array();
                 $handle = fopen($this->digital_upload_path . $csv, "r");
+
                 if ($handle) {
                     while (($row = fgetcsv($handle, 1000, ",")) !== FALSE) {
                         $arrResult[] = $row;
                     }
                     fclose($handle);
                 }
-				
+
+                //$this->erp->print_arrays($arrResult);
+
+                $handle = fopen($this->digital_upload_path . $csv, "r");
+                if ($handle) {
+                    while (($row = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                        $arrResult[] = $row;
+                    }
+                    fclose($handle);
+                }
+
                 $titles = array_shift($arrResult);
 
                 $keys = array('code', 'price','cost', 'variant');
@@ -1896,16 +1907,17 @@ class Products extends MY_Controller
                 foreach ($arrResult as $key => $value) {
                     $final[] = array_combine($keys, $value);
                 }
-				
+
                 $rw = 2;
 				$i  = 0;
 				
                 foreach ($final as $csv_pr) {
-					$item = $this->products_model->getProductByCode(trim($csv_pr['code']));					
-                    if (!$item) {
-                        $this->session->set_flashdata('error', lang("check_product_code") . " (" . $csv_pr['code'] . "). " . lang("code_x_exist") . " " . lang("line_no") . " " . $rw);
-                        redirect("products/update_price");
-                    }
+					$item = $this->products_model->getProductByCode(trim($csv_pr['code']));
+					//echo $item;exit;
+//                    if (!$item) {
+//                        $this->session->set_flashdata('error', lang("check_product_code") . " (" . $csv_pr['code'] . "). " . lang("code_x_exist") . " " . lang("line_no") . " " . $rw);
+//                        redirect("products/update_price");
+//                    }
 					if($csv_pr['cost'] != "" && $csv_pr['price'] != ""){
 						if($csv_pr['cost'] > $csv_pr['price']){
 							$this->session->set_flashdata('error', lang("check_product_code") . " (" . $csv_pr['code'] . "). " . lang("cost_x_price") . " " . lang("line_no") . " " . $rw);
@@ -1992,6 +2004,7 @@ class Products extends MY_Controller
                     }
                     fclose($handle);
                 }
+
                 $titles = array_shift($arrResult);
 				
                 $keys 			= array('code', 'quantity', 'opening_stock', 'cost');

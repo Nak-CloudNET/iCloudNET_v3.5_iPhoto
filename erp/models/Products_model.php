@@ -904,14 +904,12 @@ class Products_model extends CI_Model
 	
     public function updatePrice($data = array())
     {
-		
 		foreach($data as $item){
 			$product = $this->products_model->getProductByCode(trim($item['code']));
-			$update = array(
-				'price' => $item['price'] >= 0 ? $item['price'] : $product->price,
-				'cost'	=> $item['cost'] >= 0 ? $item['cost'] : $product->cost
-			);
-			
+                $update = array(
+                    'price' => $item['price'] > 0 ? $item['price'] : $product->price,
+                    'cost'	=> $item['cost'] > 0 ? $item['cost'] : $product->cost
+                );
 			if ($item['variant'] != "" || $item['variant'] != NULL ) {
 				$variants = explode('|', $item['variant']);
 				foreach ($variants as $variant) {
